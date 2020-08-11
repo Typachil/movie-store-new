@@ -1,0 +1,72 @@
+header{
+    position: relative;
+    background-color: #281f55;
+    height: 60px;
+    position: fixed;
+    width: 100%;
+    z-index: 9000;
+    display: block;
+}
+
+header::before {
+    position: absolute;
+    left: -8%;
+    top: 0;
+    width: 28%;
+    height: 100%;
+    content: '';
+    background-color: #f8104d;
+    transform: skewX(-30deg);
+}
+
+header .header-logo{
+    z-index: 9999;
+}
+
+header .on-subs{
+    background-color: #f8104d;
+    border-radius: 3px;
+    height:32px;
+    padding: 0 10px;
+}
+
+header .on-subs a{
+    vertical-align: middle;
+    text-align: center;
+}
+
+header .header-search{
+    position: relative;
+    border-radius: 3px;
+    height:32px;
+    width:240px;
+    padding: 0 10px;
+    border: none;
+}
+
+header .header-search::before{
+    position: absolute;
+    z-index: 1000;
+    top:0;
+    right:50px;
+}
+
+header a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+header ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0 0 0;   
+}
+
+header li{
+    list-style-type: none;
+}
+
+header .notifications , header .user{
+    cursor: pointer;
+}
