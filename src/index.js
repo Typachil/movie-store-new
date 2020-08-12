@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App'
+import Home from './pages/Movies';
 import Movies from './pages/Movies';
 import Series from './pages/Series';
 import * as serviceWorker from './serviceWorker';
@@ -12,9 +13,9 @@ ReactDOM.render(
   <BrowserRouter>
     <App>
       <Switch>
-        <Route exact path="/" component={App}></Route>
-        <Route exact path="/movies" component={Movies}></Route>
-        <Route exact path="/series" component={Series}></Route>
+        <Route exact path="/" component={Home}></Route>
+        <Route path="/movies" component={Movies}></Route>
+        <Route path="/series" component={Series}></Route>
       </Switch>
     </App>
   </BrowserRouter>,
