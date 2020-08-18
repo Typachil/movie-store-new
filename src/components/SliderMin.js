@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import '../componentCss/sliderMin.css';
+import Arrow from "./Arrow";
 
 export default function SliderMin(props){
     let [positionSlider, setPositionSlider] = useState(0);
@@ -29,22 +30,11 @@ export default function SliderMin(props){
     });
     return (
         <div className="main-recomended-slider-wrapper">
-            {positionSlider ? <div className="arrow-left" onClick={prevPosition}>
-                                <div className="arrow">
-                                    <div className="arrow-top"></div>
-                                    <div className="arrow-bottom"></div>
-                                </div>
-                            </div> : null}
+            <Arrow position={positionSlider} actions={prevPosition} direction={"left"}/>
             <div className="main-recomended-slider" style={transformStyle}>
                 {sliderItems}   
             </div>
-            {-positionSlider !== 2460 ? 
-                <div className="arrow-right" onClick={nextPosition}>
-                    <div className="arrow">
-                        <div className="arrow-top"></div>
-                        <div className="arrow-bottom"></div>
-                    </div>
-                </div> : null} 
+            <Arrow position={positionSlider} actions={nextPosition} direction={"right"}/>
         </div>
     )
 }
