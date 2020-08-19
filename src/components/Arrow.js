@@ -6,10 +6,10 @@ export default function Arrow(props){
     let shutdownButton = direction === "left" ? position : -position !== 2460;
     return (
         shutdownButton ? <div className={`arrow-${direction}`} onClick={actions}>
-                                    <div className="arrow">
-                                        <div className="arrow-top"></div>
-                                        <div className="arrow-bottom"></div>
-                                    </div>
-                                </div> : null
+                            <div className="arrow">
+                                <div className="arrow-top"></div>
+                                <div className="arrow-bottom"></div>
+                            </div>
+                        </div> : null
     )
 }
