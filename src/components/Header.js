@@ -18,7 +18,7 @@ export default function Headers(){
                     <li className="on-subs"><Link to="/subscribe">Подключить подписку</Link></li>
                     <li><input className="header-search" type="text" placeholder="Поиск"/></li>
                     <li className="notifications"><img src="/img/bell.png" width="32px" height="32px" alt="фотография"></img></li>
-                    <li className="user"><Link to="/series"><img width="32px" height="32px" src="/img/user.png" alt="фотография"></img></Link></li>
+                    <li className="user"><Link to="/profile"><img width="32px" height="32px" src="/img/user.png" alt="фотография"></img></Link></li>
                 </ul>
             </div>
         </header>
