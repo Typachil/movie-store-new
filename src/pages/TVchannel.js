@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Series(){
+export default function TVchannel(){
     return (
         <div className="pages-content wrapper">
-            <h1>Сериалы смотреть онлайн</h1>
+            <h1>ТВ-каналы</h1>
         </div>
     )
 }

@@ -3,6 +3,11 @@
     margin:0 auto;
 }
 
+.pages-content{
+    padding-top: 60px;
+    color: #ffffff;
+}
+
 body{
     background-color:#1a143b !important;
 }

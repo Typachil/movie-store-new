@@ -10,7 +10,7 @@ header{
 
 header::before {
     position: absolute;
-    left: -8%;
+    left: -10%;
     top: 0;
     width: 28%;
     height: 100%;
@@ -58,7 +58,7 @@ header a{
 
 header ul{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 15px 0 0 0;   
 }
