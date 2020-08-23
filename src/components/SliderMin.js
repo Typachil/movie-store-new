@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import '../componentCss/sliderMin.css';
 import Arrow from "./Arrow";
+import { Link } from "react-router-dom";
 
 export default function SliderMin(props){
     let [positionSlider, setPositionSlider] = useState(0);
@@ -14,9 +15,9 @@ export default function SliderMin(props){
     let transformStyle = {transform : `translateX(${positionSlider}px)`}
     
     let sliderItems = props.filmArr.map((item,key) => {
-        let {title,link} = item;
+        let {title,link,id} = item;
         return (
-            <a href="#" key={key} className="main-recomended-slider__item">
+            <Link to={`/film/${id}`} key={id} className="main-recomended-slider__item">
                 {link ? <>
                             <img src={link} width="172px" height="264px"></img>
                             <p className="main-recomended-slider__item-name">{title}</p>
@@ -25,7 +26,7 @@ export default function SliderMin(props){
                         : <div className="main-recomended-slider__lastitem">
                             <p>{title}</p>
                         </div>}
-            </a>
+            </Link>
         )
     });
     return (
