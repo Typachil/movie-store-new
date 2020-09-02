@@ -1,0 +1,16 @@
+.player{
+    position: relative;
+}
+
+.player-button{
+    background-image: url("/img/player/icons_for_player.png");
+}
+
+.player-button__pause{
+    position: absolute;
+    cursor: pointer;
+    bottom: 1%;
+    width: 80px;
+    height: 80px;
+    background-position: 28% 6%;
+}
