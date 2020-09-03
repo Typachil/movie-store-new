@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 import Subscribe from './pages/Subscribe';
 import TVchannel from './pages/TVchannel';
 import MoviePage from './pages/MoviePage';
+import Error from './pages/Error';
 
 
 ReactDOM.render(
@@ -32,6 +33,7 @@ ReactDOM.render(
         <Route path="/profile" component={Profile}></Route>
         <Route path="/subscribe" component={Subscribe}></Route>
         <Route path="/TVchannel" component={TVchannel}></Route>
+        <Route path='*' component={Error}></Route>
       </Switch>
     </App>
   </BrowserRouter>,

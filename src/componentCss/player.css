@@ -4,13 +4,36 @@
 
 .player-button{
     background-image: url("/img/player/icons_for_player.png");
+    width: 120px;
+    height: 90px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.player-button__play{
+    bottom: 1%;
+    background-position: 28% 6%;
 }
 
 .player-button__pause{
-    position: absolute;
-    cursor: pointer;
     bottom: 1%;
-    width: 80px;
-    height: 80px;
-    background-position: 28% 6%;
+    background-position: 50% 6%;
+}
+
+.player-button__rewindLeft{
+    bottom: 1%;
+    left: 8%;
+    background-position: 27% 50%;
+}
+
+.player-button__rewindRight{
+    bottom: 1%;
+    left: 18%;
+    background-position: 5% 50%;
+}
+
+.player-button__stop{
+    bottom: 1%;
+    left: 25%;
+    background-position: 93.5% 6%;
 }
