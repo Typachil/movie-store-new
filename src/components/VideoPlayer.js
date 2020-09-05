@@ -1,14 +1,14 @@
 import React, {useState, useRef} from 'react';
 import '../componentCss/player.css';
 
-export default function VideoPlayer(props){
+export default function VideoPlayer(){
     let [timeVideo, setTimeVideo] = useState(0)
     let [pauseVideo, setPauseVideo] = useState(true)
     const videoPlayer = useRef(null);
 
     function progressUpdate(){
         console.log(timeVideo);
-        setTimeVideo(videoPlayer.current.currentTime);
+        setTimeVideo(Math.round(videoPlayer.current.currentTime));
     };
 
     function pausedVideo(){
@@ -23,12 +23,25 @@ export default function VideoPlayer(props){
     };
 
     function rewindPlayerLeft(){
-        videoPlayer.current.currentTime -= 10.0;
+        videoPlayer.current.currentTime -= 10;
+        setTimeVideo(timeVideo -= 10);
     }
 
     function rewindPlayerRight(){
-        videoPlayer.current.currentTime += 10.0;
+        videoPlayer.current.currentTime += 10;
+        setTimeVideo(timeVideo += 10)
     }
+
+    function realizeTime(){
+        let hour = timeVideo < 3600 ? 0 : timeVideo % 3600; 
+        let minutes = timeVideo < 60 ? 0 : Math.round(timeVideo / 60);
+        let seconds = timeVideo < 60 ? timeVideo : timeVideo - (minutes * 60);
+        return `${hour}:${minutes}:${seconds}`
+    }
+
+    function progressBar(){
+
+    };
 
     return (
         <div>
@@ -47,6 +60,9 @@ export default function VideoPlayer(props){
                 </div>
                 <div onClick={stopVideo} 
                     className='player-button player-button__stop'>
+                </div>
+                <div className='player__time'>
+                    {realizeTime()}
                 </div>
             </div>
         </div>
