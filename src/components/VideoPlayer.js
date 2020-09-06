@@ -5,6 +5,7 @@ export default function VideoPlayer(){
     let [timeVideo, setTimeVideo] = useState(0)
     let [pauseVideo, setPauseVideo] = useState(true)
     const videoPlayer = useRef(null);
+    // const videoDuration = Math.round(videoPlayer.current.duration);
 
     function progressUpdate(){
         console.log(timeVideo);
@@ -34,9 +35,9 @@ export default function VideoPlayer(){
 
     function realizeTime(){
         let hour = timeVideo < 3600 ? 0 : timeVideo % 3600; 
-        let minutes = timeVideo < 60 ? 0 : Math.round(timeVideo / 60);
+        let minutes = timeVideo < 60 ? 0 : Math.floor(timeVideo / 60);
         let seconds = timeVideo < 60 ? timeVideo : timeVideo - (minutes * 60);
-        return `${hour}:${minutes}:${seconds}`
+        return `${hour}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`
     }
 
     function progressBar(){
