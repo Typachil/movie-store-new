@@ -45,27 +45,28 @@ export default function VideoPlayer(){
     };
 
     return (
-        <div>
             <div className="player">
                 <video onTimeUpdate={progressUpdate} ref={videoPlayer}>
                     <source src="/video/videoNM.mp4" type="video/mp4"></source>
                 </video>
-                <div onClick={pausedVideo} 
-                    className={`player-button player-button__${pauseVideo ? 'play' : 'pause'}`}>
-                </div>
-                <div onClick={rewindPlayerLeft} 
-                    className='player-button player-button__rewindLeft'>
-                </div>
-                <div onClick={rewindPlayerRight} 
-                    className='player-button player-button__rewindRight'>
-                </div>
-                <div onClick={stopVideo} 
-                    className='player-button player-button__stop'>
-                </div>
-                <div className='player__time'>
-                    {realizeTime()}
+                <div className="player-control">
+                    <div onClick={pausedVideo} 
+                        className={`player-control__button player-control-button__${pauseVideo ? 'play' : 'pause'}`}>
+                    </div>
+                    <div onClick={rewindPlayerLeft} 
+                        className='player-control__button player-control-button__rewindLeft'>
+                    </div>
+                    <div onClick={rewindPlayerRight} 
+                        className='player-control__button player-control-button__rewindRight'>
+                    </div>
+                    <div onClick={stopVideo} 
+                        className='player-control__button player-control-button__stop'>
+                    </div>
+                    <div className='player-control__time'>
+                        {realizeTime()}
+                    </div>
+                    <div className='player-control__progress'></div>
                 </div>
             </div>
-        </div>
     )
 }

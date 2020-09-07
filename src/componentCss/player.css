@@ -2,45 +2,42 @@
     position: relative;
 }
 
-.player-button{
+.player-control{
+    position: absolute;
+    width: 90%;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.player-control__button{
     background-image: url("/img/player/icons_for_player.png");
     width: 120px;
     height: 90px;
-    position: absolute;
     cursor: pointer;
 }
 
-.player-button__play{
-    bottom: 1%;
+.player-control-button__play{
     background-position: 28% 6%;
 }
 
-.player-button__pause{
-    bottom: 1%;
+.player-control-button__pause{
     background-position: 50% 6%;
 }
 
-.player-button__rewindLeft{
-    bottom: 1%;
-    left: 8%;
+.player-control-button__rewindLeft{
     background-position: 27% 50%;
 }
 
-.player-button__rewindRight{
-    bottom: 1%;
-    left: 18%;
+.player-control-button__rewindRight{
     background-position: 5% 50%;
 }
 
-.player-button__stop{
-    bottom: 1%;
-    left: 27%;
+.player-control-button__stop{
     background-position: 96.5% 6%;
 }
 
-.player__time{
-    position: absolute;
+.player-control__time{
     font-size: 30px;
-    bottom: 5%;
-    left: 35%;
+    line-height: 80px;
 }
