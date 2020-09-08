@@ -3,13 +3,20 @@ import '../componentCss/player.css';
 
 export default function VideoPlayer(){
     let [timeVideo, setTimeVideo] = useState(0)
+    let [videoDuration, setVideoDuration] = useState(0)
     let [pauseVideo, setPauseVideo] = useState(true)
     const videoPlayer = useRef(null);
-    // const videoDuration = Math.round(videoPlayer.current.duration);
+
+    function canPlayVideo(){
+        const videoDuration = Math.round(videoPlayer.current.duration);
+        setVideoDuration(videoDuration)
+        console.log(videoDuration)
+    }
 
     function progressUpdate(){
         console.log(timeVideo);
         setTimeVideo(Math.round(videoPlayer.current.currentTime));
+        if(videoDuration == timeVideo) stopVideo();
     };
 
     function pausedVideo(){
@@ -40,13 +47,14 @@ export default function VideoPlayer(){
         return `${hour}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`
     }
 
-    function progressBar(){
-
+    function progressionVideo(){
+        let widthProgressBar = 650;
+        return (widthProgressBar / 100) * Math.round((timeVideo / videoDuration) * 100);
     };
 
     return (
             <div className="player">
-                <video onTimeUpdate={progressUpdate} ref={videoPlayer}>
+                <video onLoadedMetadata={canPlayVideo} onTimeUpdate={progressUpdate} ref={videoPlayer}>
                     <source src="/video/videoNM.mp4" type="video/mp4"></source>
                 </video>
                 <div className="player-control">
@@ -65,7 +73,9 @@ export default function VideoPlayer(){
                     <div className='player-control__time'>
                         {realizeTime()}
                     </div>
-                    <div className='player-control__progress'></div>
+                    <div className='player-control-progress'>
+                        <div style={{width : progressionVideo() + "px"}} className='player-control-progress__videotime'></div>
+                    </div>
                 </div>
             </div>
     )

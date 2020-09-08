@@ -8,6 +8,7 @@
     bottom: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .player-control__button{
@@ -19,10 +20,12 @@
 
 .player-control-button__play{
     background-position: 28% 6%;
+    width: 100px;
 }
 
 .player-control-button__pause{
     background-position: 50% 6%;
+    width: 100px;
 }
 
 .player-control-button__rewindLeft{
@@ -34,10 +37,27 @@
 }
 
 .player-control-button__stop{
-    background-position: 96.5% 6%;
+    background-position: 95% 6%;
+    width: 100px;
 }
 
 .player-control__time{
     font-size: 30px;
     line-height: 80px;
+}
+
+.player-control-progress{
+    position: relative;
+    cursor: pointer;
+    height: 25px;
+    width: 650px;
+    background-color: #000000;
+    border: 1px solid seashell;
+}
+
+.player-control-progress__videotime{
+    position: absolute;
+    left:0;
+    height: 23px;
+    background-color: lightskyblue;
 }
