@@ -41,6 +41,10 @@
     width: 100px;
 }
 
+.player-control-button__muteSound{
+    background-position: 27% 97%;
+}
+
 .player-control__time{
     font-size: 30px;
     line-height: 80px;
@@ -60,4 +64,12 @@
     left:0;
     height: 23px;
     background-color: lightskyblue;
+}
+
+.player-control-progress__preview{
+    position: absolute;
+    bottom: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: khaki;
 }

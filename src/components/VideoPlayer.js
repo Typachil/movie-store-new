@@ -1,16 +1,16 @@
 import React, {useState, useRef} from 'react';
 import '../componentCss/player.css';
+import VideoProgress from './VideoPlayer/VideoProgress';
 
 export default function VideoPlayer(){
-    let [timeVideo, setTimeVideo] = useState(0)
-    let [videoDuration, setVideoDuration] = useState(0)
-    let [pauseVideo, setPauseVideo] = useState(true)
+    let [timeVideo, setTimeVideo] = useState(0);
+    let [videoDuration, setVideoDuration] = useState(0);
+    let [pauseVideo, setPauseVideo] = useState(true);
     const videoPlayer = useRef(null);
 
     function canPlayVideo(){
         const videoDuration = Math.round(videoPlayer.current.duration);
         setVideoDuration(videoDuration)
-        console.log(videoDuration)
     }
 
     function progressUpdate(){
@@ -29,6 +29,10 @@ export default function VideoPlayer(){
         videoPlayer.current.pause();
         videoPlayer.current.currentTime = 0;
     };
+
+    function mutedVideo(){
+        videoPlayer.current.muted = !videoPlayer.current.muted;
+    }
 
     function rewindPlayerLeft(){
         videoPlayer.current.currentTime -= 10;
@@ -73,9 +77,8 @@ export default function VideoPlayer(){
                     <div className='player-control__time'>
                         {realizeTime()}
                     </div>
-                    <div className='player-control-progress'>
-                        <div style={{width : progressionVideo() + "px"}} className='player-control-progress__videotime'></div>
-                    </div>
+                    <VideoProgress progressionVideo={progressionVideo}/>
+                    <div onClick={mutedVideo} className='player-control__button player-control-button__muteSound'></div>
                 </div>
             </div>
     )
