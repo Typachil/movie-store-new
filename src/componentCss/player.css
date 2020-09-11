@@ -1,48 +1,58 @@
 .player{
     position: relative;
+    width: 100%;
 }
 
 .player-control{
     position: absolute;
-    width: 90%;
+    width: 100%;
+    height: 7%;
     bottom: 0;
+    background-color: #333;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 .player-control__button{
-    background-image: url("/img/player/icons_for_player.png");
-    width: 120px;
-    height: 90px;
+    width: 0; 
+    height: 0;
     cursor: pointer;
 }
 
 .player-control-button__play{
-    background-position: 28% 6%;
-    width: 100px;
+    border-top: 20px solid transparent;
+    border-left: 40px solid #D0D4DC;
+    border-bottom: 20px solid transparent;
 }
 
 .player-control-button__pause{
-    background-position: 50% 6%;
     width: 100px;
 }
 
-.player-control-button__rewindLeft{
-    background-position: 27% 50%;
+.player-control-button__rewindLeft::before{
+    content: "";
+    border-top: 20px solid transparent;
+    border-right: 40px solid #959FB0;
+    border-bottom: 20px solid transparent;
+}
+
+.player-control-button__rewindLeft::after{
+    content: "";
+    border-top: 20px solid transparent;
+    border-right: 40px solid #959FB0;
+    border-bottom: 20px solid transparent;
 }
 
 .player-control-button__rewindRight{
-    background-position: 5% 50%;
+
 }
 
 .player-control-button__stop{
-    background-position: 95% 6%;
     width: 100px;
 }
 
 .player-control-button__muteSound{
-    background-position: 27% 97%;
 }
 
 .player-control__time{

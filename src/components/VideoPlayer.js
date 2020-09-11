@@ -58,7 +58,7 @@ export default function VideoPlayer(){
 
     return (
             <div className="player">
-                <video onLoadedMetadata={canPlayVideo} onTimeUpdate={progressUpdate} ref={videoPlayer}>
+                <video width="`100%" onLoadedMetadata={canPlayVideo} onTimeUpdate={progressUpdate} ref={videoPlayer}>
                     <source src="/video/videoNM.mp4" type="video/mp4"></source>
                 </video>
                 <div className="player-control">
