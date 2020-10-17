@@ -58,27 +58,37 @@ export default function VideoPlayer(){
 
     return (
             <div className="player">
-                <video width="`100%" onLoadedMetadata={canPlayVideo} onTimeUpdate={progressUpdate} ref={videoPlayer}>
+                <video onLoadedMetadata={canPlayVideo} onTimeUpdate={progressUpdate} ref={videoPlayer}>
                     <source src="/video/videoNM.mp4" type="video/mp4"></source>
                 </video>
                 <div className="player-control">
-                    <div onClick={pausedVideo} 
-                        className={`player-control__button player-control-button__${pauseVideo ? 'play' : 'pause'}`}>
+                    <div onClick={pausedVideo} className="player-control__button">
+                            <div className={`player-control-button__${pauseVideo ? 'play' : 'pause'}`}></div>
                     </div>
                     <div onClick={rewindPlayerLeft} 
                         className='player-control__button player-control-button__rewindLeft'>
+                            <div></div>
+                            <div></div>
                     </div>
                     <div onClick={rewindPlayerRight} 
                         className='player-control__button player-control-button__rewindRight'>
+                            <div></div>
+                            <div></div>
                     </div>
                     <div onClick={stopVideo} 
                         className='player-control__button player-control-button__stop'>
+                            <div></div>
                     </div>
                     <div className='player-control__time'>
                         {realizeTime()}
                     </div>
                     <VideoProgress progressionVideo={progressionVideo}/>
-                    <div onClick={mutedVideo} className='player-control__button player-control-button__muteSound'></div>
+                    <div onClick={mutedVideo} className='player-control__button player-control-button__muteSound'>
+                        <div className="player-control-button__muteSound-componentFirst"></div>
+                        <div className="player-control-button__muteSound-componentSecond"></div>
+                        <div className="player-control-button__muteSound-componentThird"></div>
+                        <div className="player-control-button__muteSound-componentFourth"></div>
+                    </div>
                 </div>
             </div>
     )

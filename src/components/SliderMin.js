@@ -17,7 +17,7 @@ export default function SliderMin(props){
     let sliderItems = props.filmArr.map((item,key) => {
         let {title,link,id} = item;
         return (
-            <Link to={`/film/${id}`} key={id} className="main-recomended-slider__item">
+            <Link to={`/film/${id}`} key={key} className="main-recomended-slider__item">
                 {link ? <>
                             <img src={link} width="172px" height="264px"></img>
                             <p className="main-recomended-slider__item-name">{title}</p>
