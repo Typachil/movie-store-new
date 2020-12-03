@@ -1,20 +1,39 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import '../componentCss/player.css';
 import VideoProgress from './VideoPlayer/VideoProgress';
+import ControllerVolume from './VideoPlayer/ControllerVolume';
+
+function round(value, decimals) {
+    let dec = Math.pow(10, decimals);
+    return Math.round(value * dec) / dec;
+}
 
 export default function VideoPlayer(){
     let [timeVideo, setTimeVideo] = useState(0);
     let [videoDuration, setVideoDuration] = useState(0);
     let [pauseVideo, setPauseVideo] = useState(true);
+    let [fullScreen, setFullScreen] = useState(false);
+    let [focusPlayer, setfocusPlayer] = useState(false);
+    let [volumePlayer, setVolumePlayer] = useState(0.1);
+    let [loadingPlayer, setLoadingPlayer] = useState(false)
     const videoPlayer = useRef(null);
+    const videoPlayerWithInterface = useRef(null);
+
+    useEffect(() => {
+        videoPlayer.current.volume = volumePlayer;
+        document.addEventListener("keydown", keyboardAction);
+        console.log(loadingPlayer)
+        return () => {
+            document.removeEventListener("keydown", keyboardAction)
+        }
+    });
 
     function canPlayVideo(){
         const videoDuration = Math.round(videoPlayer.current.duration);
         setVideoDuration(videoDuration)
-    }
+    };
 
     function progressUpdate(){
-        console.log(timeVideo);
         setTimeVideo(Math.round(videoPlayer.current.currentTime));
         if(videoDuration == timeVideo) stopVideo();
     };
@@ -34,6 +53,14 @@ export default function VideoPlayer(){
         videoPlayer.current.muted = !videoPlayer.current.muted;
     }
 
+    function rewindVideo(time){
+        videoPlayer.current.currentTime = time;
+    }
+
+    function changeVolumeVideo(volume){
+        setVolumePlayer(round(volume));
+    }
+
     function rewindPlayerLeft(){
         videoPlayer.current.currentTime -= 10;
         setTimeVideo(timeVideo -= 10);
@@ -44,23 +71,86 @@ export default function VideoPlayer(){
         setTimeVideo(timeVideo += 10)
     }
 
-    function realizeTime(){
-        let hour = timeVideo < 3600 ? 0 : timeVideo % 3600; 
-        let minutes = timeVideo < 60 ? 0 : Math.floor(timeVideo / 60);
-        let seconds = timeVideo < 60 ? timeVideo : timeVideo - (minutes * 60);
+    function louderVolumePlayer(){
+        if(!(volumePlayer == 1.0)) {
+            setVolumePlayer(round(volumePlayer += 0.1 , 1));
+        };
+    }
+
+    function quieterVolumePlayer(){
+        if(!(volumePlayer == 0)){
+            setVolumePlayer(round(volumePlayer -= 0.1 , 1));
+        };
+    }
+
+    function realizeTime(time){
+        let hour = time < 3600 ? 0 : time % 3600; 
+        let minutes = time < 60 ? 0 : Math.floor(time / 60);
+        let seconds = time < 60 ? time : time - (minutes * 60);
         return `${hour}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`
     }
 
-    function progressionVideo(){
-        let widthProgressBar = 650;
-        return (widthProgressBar / 100) * Math.round((timeVideo / videoDuration) * 100);
-    };
+    function realzieFullTime(){
+        let hour = Math.floor(videoDuration / 3600);
+        let minutes = Math.floor(videoDuration / 60);
+        let seconds = videoDuration - (minutes * 60);
+        return `${hour}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`
+    }
+
+    function changeFullScreen(){
+        setFullScreen(!fullScreen);
+        !fullScreen ? videoPlayerWithInterface.current.requestFullscreen() : document.exitFullscreen();
+    }
+
+    function changeFocusPlayer(e){
+        setfocusPlayer(!focusPlayer);
+    }
+
+    function keyboardAction(event){
+        if(focusPlayer){
+            switch (event.code){
+                case "ArrowLeft":
+                    event.preventDefault()
+                    rewindPlayerLeft();
+                    break;
+                case "ArrowRight":
+                    event.preventDefault()
+                    rewindPlayerRight();
+                    break;
+                case "Space":
+                    event.preventDefault()
+                    pausedVideo();
+                    break;
+                case "ArrowUp":
+                    event.preventDefault()
+                    louderVolumePlayer();
+                    break;
+                case "ArrowDown":
+                    event.preventDefault()
+                    quieterVolumePlayer();
+                    break;
+                default: 
+                    console.log("Sorry, we are out of " + event.code + "."); 
+            }
+        }
+    }
 
     return (
-            <div className="player">
-                <video onLoadedMetadata={canPlayVideo} onTimeUpdate={progressUpdate} ref={videoPlayer}>
+            <div onKeyDown={keyboardAction} 
+                onFocus={changeFocusPlayer} 
+                onBlur={changeFocusPlayer}
+                tabIndex="1" className="player" 
+                ref={videoPlayerWithInterface}>
+                <video className="player-video" onLoadedMetadata={canPlayVideo} 
+                        onClick={pausedVideo} onTimeUpdate={progressUpdate} 
+                        onWaiting={() => setLoadingPlayer(!loadingPlayer)}
+                        onPlay={() => setLoadingPlayer(!loadingPlayer)} ref={videoPlayer}>
                     <source src="/video/videoNM.mp4" type="video/mp4"></source>
                 </video>
+                <div className={`player-playButton player-playButton__${loadingPlayer ? "loading" : "play"}`} 
+                    style={{opacity : pauseVideo ? 1 : 0}} onClick={pausedVideo}>
+                    <div></div>
+                </div>
                 <div className="player-control">
                     <div onClick={pausedVideo} className="player-control__button">
                             <div className={`player-control-button__${pauseVideo ? 'play' : 'pause'}`}></div>
@@ -80,14 +170,28 @@ export default function VideoPlayer(){
                             <div></div>
                     </div>
                     <div className='player-control__time'>
-                        {realizeTime()}
+                        {realizeTime(timeVideo)}
                     </div>
-                    <VideoProgress progressionVideo={progressionVideo}/>
-                    <div onClick={mutedVideo} className='player-control__button player-control-button__muteSound'>
-                        <div className="player-control-button__muteSound-componentFirst"></div>
-                        <div className="player-control-button__muteSound-componentSecond"></div>
-                        <div className="player-control-button__muteSound-componentThird"></div>
-                        <div className="player-control-button__muteSound-componentFourth"></div>
+                    <VideoProgress rewindVideo={rewindVideo} timeVideo={timeVideo} 
+                                    videoDuration={videoDuration} realizeTime={realizeTime}/>
+                    <div className='player-control__time'>
+                        {realzieFullTime()}
+                    </div>
+                    <ControllerVolume changeVolumeVideo={changeVolumeVideo} volumePlayer={volumePlayer} mutedVideo={mutedVideo}/>
+                    <div className="player-control__button player-control-button__videoQuality">
+                        <div className="player-control-button__videoQuality__popup">
+                            <div>1080p</div>
+                            <div>720p</div>
+                            <div>480p</div>
+                            <div>360p</div>
+                        </div>
+                        1080p
+                    </div>
+                    <div onClick={changeFullScreen} className="player-control__button player-control-button__fullScreen">
+                        <div className="player-control-button__fullScreen-componentFirst"></div>
+                        <div className="player-control-button__fullScreen-componentSecond"></div>
+                        <div className="player-control-button__fullScreen-componentThird"></div>
+                        <div className="player-control-button__fullScreen-componentFourth"></div>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,54 @@
+@keyframes spin{
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+  }
+
 .player{
     position: relative;
-    width: 1280px;
-    height: 720px;
+    width: 100%;
+    animation-duration: 2s;
+}
+
+.player:hover .player-control{
+    opacity: 1;
+}
+
+.player:focus{
+    outline: none;
+}
+
+.player-video{
+    width: 100%;
+    height: 100%;
+}
+
+.player-playButton{
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 45%;
+    top: 40%;
+    width: 10%;
+    height: 15%;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.player-playButton__play div{
+    border-top: 45px solid transparent;
+    border-left: 90px solid white;
+    border-bottom: 45px solid transparent;
+}
+
+.player-playButton__loading div{
+    height: 90px;
+    width: 90px;
+    border: 6px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
 }
 
 .player-control{
@@ -9,16 +56,17 @@
     width: inherit;
     height: 5%;
     bottom: 0;
-    background-color: #333;
+    background-color: rgb(51, 51, 51);
     display: flex;
     justify-content: space-around;
     align-items: center;
+    opacity: 0;
+    transition: opacity 1s;
 }
 
 .player-control__button{
     width: 50px; 
-    height: 35px;
-    border: 1px solid blueviolet;
+    height: 100%;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -67,11 +115,43 @@
     height: 20px
 }
 
+.player-control-button__controllerVolume{
+    position: relative;
+}
+
+.player-control-button__controllerVolume:hover .player-control-button__popupControllerVolume{
+    opacity: 1;
+}
+
 .player-control-button__muteSound{
-    
+    width: 35px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-control-button__popupControllerVolume{
+    position: relative;
+    opacity: 0;
+    width: 15px;
+    height: 80px;
+    bottom:150%;
+    left:50%;
+    background-color: rgb(255, 235, 205);
+    transition: opacity 1.5s;
+}
+
+.player-control-button__popupControllerVolume__change{
+    position: absolute;
+    bottom: 0;
+    width: inherit;
+    height: 50px;
+    background-color: rgb(236, 187, 113);
 }
 
 .player-control-button__muteSound-componentFirst{
+    position: absolute;
     width: 6px;
     height: 12px;
     border-radius:3px 0 0 3px;
@@ -79,9 +159,73 @@
 }
 
 .player-control-button__muteSound-componentSecond{
-    border-top: 10px solid transparent;
-    border-right: 15px solid #959FB0;
-    border-bottom: 10px solid transparent;
+    position: absolute;
+    width: 1px;
+    height: 30px;
+    border: 10px solid transparent;
+    border-color: transparent transparent transparent #959FB0;
+    transform: rotate(180deg);
+}
+
+.player-control-button__muteSound-componentThird{
+    position: relative;
+    left: 5px;
+    width: 25px;
+    height: 25px;
+    border: 5px solid transparent;
+    border-color: transparent #959FB0 transparent transparent;
+    border-radius: 50%;
+}
+
+.player-control-button__muteSound-componentThird::before{
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: -10px;
+    width: 36px;
+    height: 36px;
+    border: 6px solid transparent;
+    border-color: transparent #959FB0 transparent transparent;
+    border-radius: 50%;
+}
+
+.player-control-button__fullScreen{
+    position: relative;
+}
+
+.player-control-button__fullScreen div{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 30%;
+}
+
+.player-control-button__fullScreen-componentFirst{
+    bottom: 5%;
+    left: 15%;
+    border: 3px solid transparent;
+    border-color:transparent transparent #959FB0 #959FB0;
+}
+
+.player-control-button__fullScreen-componentSecond{
+    top: 5%;
+    left: 15%;
+    border: 3px solid transparent;
+    border-color:#959FB0 transparent transparent #959FB0;
+}
+
+.player-control-button__fullScreen-componentThird{
+    top: 5%;
+    right: 15%;
+    border: 3px solid transparent;
+    border-color:#959FB0 #959FB0 transparent transparent;
+}
+
+.player-control-button__fullScreen-componentFourth{
+    bottom: 5%;
+    right: 15%;
+    border: 3px solid transparent;
+    border-color:transparent #959FB0 #959FB0 transparent;
 }
 
 .player-control__time{
@@ -109,6 +253,35 @@
     position: absolute;
     bottom: 30px;
     width: 50px;
-    height: 50px;
-    background-color: khaki;
+    height: 25px;
+    background-color: white;
+    color: black;
+}
+
+.player-control-button__videoQuality{
+    position: relative;
+    font-size: 1.1em;
+}
+
+.player-control-button__videoQuality:hover .player-control-button__videoQuality__popup{
+    opacity: 1;
+}
+
+.player-control-button__videoQuality__popup{
+    opacity: 0;
+    position: absolute;
+    bottom:100%;
+    width: inherit;
+    background-color: #333;
+    transition: opacity 1s;
+}
+
+.player-control-button__videoQuality__popup div{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #ffffff;
+}
+
+.player-control-button__videoQuality__popup div:hover{
+    color: #b3b3b3
 }
