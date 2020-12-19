@@ -3,18 +3,16 @@ import React, {useState, useEffect, useRef} from "react";
 export default function ControllerVolume(props){
 
     const [defaultControllerVolumeHeight, setDefaultControllerVolumeHeight] = useState(0);
-    const [controllerVolumeHeight, setControllerVolumeHeight] = useState(0)
+    const [controllerVolumeHeight, setControllerVolumeHeight] = useState(0);
     const controllerVolume = useRef();
 
     useEffect(() => {
         setDefaultControllerVolumeHeight(controllerVolume.current.getBoundingClientRect().height);
-    },[]);
+        setControllerVolumeHeight(Math.round(defaultControllerVolumeHeight * props.volumePlayer))
+    },[props.volumePlayer]);
 
     function changeWidthController(e){
-        // console.log(props.volumePlayer)
-        // console.log(Math.round(controllerVolume.current.getBoundingClientRect().bottom - e.clientY))
-        // console.log((props.volumePlayer / controllerVolumeHeight) * defaultControllerVolumeHeight)
-        setControllerVolumeHeight(Math.round(controllerVolume.current.getBoundingClientRect().bottom - e.clientY))
+        props.changeVolumeVideo(props.round(Math.round(controllerVolume.current.getBoundingClientRect().bottom - e.clientY) / 100 , 2));
     }
 
     return (

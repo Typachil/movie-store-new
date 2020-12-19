@@ -135,8 +135,8 @@
     position: relative;
     opacity: 0;
     width: 15px;
-    height: 80px;
-    bottom:150%;
+    height: 100px;
+    bottom:175%;
     left:50%;
     background-color: rgb(255, 235, 205);
     transition: opacity 1.5s;

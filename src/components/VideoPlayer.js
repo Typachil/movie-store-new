@@ -9,20 +9,20 @@ function round(value, decimals) {
 }
 
 export default function VideoPlayer(){
-    let [timeVideo, setTimeVideo] = useState(0);
-    let [videoDuration, setVideoDuration] = useState(0);
-    let [pauseVideo, setPauseVideo] = useState(true);
-    let [fullScreen, setFullScreen] = useState(false);
-    let [focusPlayer, setfocusPlayer] = useState(false);
-    let [volumePlayer, setVolumePlayer] = useState(0.1);
-    let [loadingPlayer, setLoadingPlayer] = useState(false)
+    const [timeVideo, setTimeVideo] = useState(0);
+    const [videoDuration, setVideoDuration] = useState(0);
+    const [pauseVideo, setPauseVideo] = useState(true);
+    const [fullScreen, setFullScreen] = useState(false);
+    const [focusPlayer, setfocusPlayer] = useState(false);
+    const [volumePlayer, setVolumePlayer] = useState(0.1);
+    const [loadingPlayer, setLoadingPlayer] = useState(false)
     const videoPlayer = useRef(null);
     const videoPlayerWithInterface = useRef(null);
 
     useEffect(() => {
         videoPlayer.current.volume = volumePlayer;
         document.addEventListener("keydown", keyboardAction);
-        console.log(loadingPlayer)
+        // console.log(loadingPlayer)
         return () => {
             document.removeEventListener("keydown", keyboardAction)
         }
@@ -58,29 +58,35 @@ export default function VideoPlayer(){
     }
 
     function changeVolumeVideo(volume){
-        setVolumePlayer(round(volume));
+        setVolumePlayer(volume);
     }
 
     function rewindPlayerLeft(){
         videoPlayer.current.currentTime -= 10;
-        setTimeVideo(timeVideo -= 10);
+        setTimeVideo(timeVideo - 10);
     }
 
     function rewindPlayerRight(){
         videoPlayer.current.currentTime += 10;
-        setTimeVideo(timeVideo += 10)
+        setTimeVideo(timeVideo + 10)
     }
 
     function louderVolumePlayer(){
-        if(!(volumePlayer == 1.0)) {
-            setVolumePlayer(round(volumePlayer += 0.1 , 1));
-        };
+        console.log(volumePlayer)
+        if(!(volumePlayer == 1.0) && !(round(volumePlayer + 0.1 , 1) > 1.0)) {
+            setVolumePlayer(round(volumePlayer + 0.1 , 1));
+        }else{
+            setVolumePlayer(1)
+        }
     }
 
     function quieterVolumePlayer(){
-        if(!(volumePlayer == 0)){
-            setVolumePlayer(round(volumePlayer -= 0.1 , 1));
-        };
+        console.log(volumePlayer)
+        if(!(volumePlayer == 0) && !(round(volumePlayer - 0.1 , 1) < 0)){
+            setVolumePlayer(round(volumePlayer - 0.1 , 1));
+        }else{
+            setVolumePlayer(0)
+        }
     }
 
     function realizeTime(time){
@@ -147,10 +153,10 @@ export default function VideoPlayer(){
                         onPlay={() => setLoadingPlayer(!loadingPlayer)} ref={videoPlayer}>
                     <source src="/video/videoNM.mp4" type="video/mp4"></source>
                 </video>
-                <div className={`player-playButton player-playButton__${loadingPlayer ? "loading" : "play"}`} 
+                {/* <div className={`player-playButton player-playButton__${loadingPlayer ? "loading" : "play"}`} 
                     style={{opacity : pauseVideo ? 1 : 0}} onClick={pausedVideo}>
                     <div></div>
-                </div>
+                </div> */}
                 <div className="player-control">
                     <div onClick={pausedVideo} className="player-control__button">
                             <div className={`player-control-button__${pauseVideo ? 'play' : 'pause'}`}></div>
@@ -177,7 +183,7 @@ export default function VideoPlayer(){
                     <div className='player-control__time'>
                         {realzieFullTime()}
                     </div>
-                    <ControllerVolume changeVolumeVideo={changeVolumeVideo} volumePlayer={volumePlayer} mutedVideo={mutedVideo}/>
+                    <ControllerVolume round={round} changeVolumeVideo={changeVolumeVideo} volumePlayer={volumePlayer} mutedVideo={mutedVideo}/>
                     <div className="player-control__button player-control-button__videoQuality">
                         <div className="player-control-button__videoQuality__popup">
                             <div>1080p</div>

@@ -10,6 +10,11 @@ export default class ErrorBoundary extends React.Component {
       // Обновить состояние с тем, чтобы следующий рендер показал запасной UI.
       return { hasError: true };
     }
+
+    componentDidCatch(error, errorInfo) {
+      // Можно также сохранить информацию об ошибке в соответствующую службу журнала ошибок
+      console.log(error)
+    }
   
     render() {
       if (this.state.hasError) {
