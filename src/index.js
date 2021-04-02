@@ -15,6 +15,8 @@ import Collections from './pages/Collections';
 import Profile from './pages/Profile';
 import Subscribe from './pages/Subscribe';
 import TVchannel from './pages/TVchannel';
+import MoviePage from './pages/MoviePage';
+import Error from './pages/Error';
 
 
 ReactDOM.render(
@@ -22,6 +24,7 @@ ReactDOM.render(
     <App>
       <Switch>
         <Route exact path="/" component={Home}></Route>
+        <Route path="/film/:id" component={MoviePage}></Route>
         <Route path="/movies" component={Movies}></Route>
         <Route path="/cartoon" component={Cartoon}></Route>
         <Route path="/series" component={Series}></Route>
@@ -30,6 +33,7 @@ ReactDOM.render(
         <Route path="/profile" component={Profile}></Route>
         <Route path="/subscribe" component={Subscribe}></Route>
         <Route path="/TVchannel" component={TVchannel}></Route>
+        <Route path='*' component={Error}></Route>
       </Switch>
     </App>
   </BrowserRouter>,
