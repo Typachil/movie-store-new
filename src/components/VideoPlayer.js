@@ -12,17 +12,17 @@ export default function VideoPlayer(){
     const [timeVideo, setTimeVideo] = useState(0);
     const [videoDuration, setVideoDuration] = useState(0);
     const [pauseVideo, setPauseVideo] = useState(true);
+    const [qualityVideo, setQualityVideo] = useState("720")
     const [fullScreen, setFullScreen] = useState(false);
     const [focusPlayer, setfocusPlayer] = useState(false);
     const [volumePlayer, setVolumePlayer] = useState(0.1);
-    const [loadingPlayer, setLoadingPlayer] = useState(false)
+    const [loadingPlayer, setLoadingPlayer] = useState(false);
     const videoPlayer = useRef(null);
     const videoPlayerWithInterface = useRef(null);
 
     useEffect(() => {
         videoPlayer.current.volume = volumePlayer;
         document.addEventListener("keydown", keyboardAction);
-        // console.log(loadingPlayer)
         return () => {
             document.removeEventListener("keydown", keyboardAction)
         }
@@ -112,27 +112,30 @@ export default function VideoPlayer(){
         setfocusPlayer(!focusPlayer);
     }
 
+    function changeQualityVideo(e){
+        let quality = e.target.innerHTML.match(/\d/g).join("");
+        videoPlayer.current.load();
+        setQualityVideo(quality);
+        rewindVideo(timeVideo)
+    }
+
     function keyboardAction(event){
         if(focusPlayer){
+            event.preventDefault()
             switch (event.code){
                 case "ArrowLeft":
-                    event.preventDefault()
                     rewindPlayerLeft();
                     break;
                 case "ArrowRight":
-                    event.preventDefault()
                     rewindPlayerRight();
                     break;
                 case "Space":
-                    event.preventDefault()
                     pausedVideo();
                     break;
                 case "ArrowUp":
-                    event.preventDefault()
                     louderVolumePlayer();
                     break;
                 case "ArrowDown":
-                    event.preventDefault()
                     quieterVolumePlayer();
                     break;
                 default: 
@@ -151,7 +154,7 @@ export default function VideoPlayer(){
                         onClick={pausedVideo} onTimeUpdate={progressUpdate} 
                         onWaiting={() => setLoadingPlayer(!loadingPlayer)}
                         onPlay={() => setLoadingPlayer(!loadingPlayer)} ref={videoPlayer}>
-                    <source src="/video/videoNM.mp4" type="video/mp4"></source>
+                    <source src={`/video/videoNM_${qualityVideo}.mp4`} type="video/mp4"></source>
                 </video>
                 {/* <div className={`player-playButton player-playButton__${loadingPlayer ? "loading" : "play"}`} 
                     style={{opacity : pauseVideo ? 1 : 0}} onClick={pausedVideo}>
@@ -185,13 +188,13 @@ export default function VideoPlayer(){
                     </div>
                     <ControllerVolume round={round} changeVolumeVideo={changeVolumeVideo} volumePlayer={volumePlayer} mutedVideo={mutedVideo}/>
                     <div className="player-control__button player-control-button__videoQuality">
-                        <div className="player-control-button__videoQuality__popup">
-                            <div>1080p</div>
+                        <div className="player-control-button__videoQuality__popup" 
+                            onClick={changeQualityVideo}>
                             <div>720p</div>
                             <div>480p</div>
                             <div>360p</div>
                         </div>
-                        1080p
+                        <div>{qualityVideo + "p"}</div>
                     </div>
                     <div onClick={changeFullScreen} className="player-control__button player-control-button__fullScreen">
                         <div className="player-control-button__fullScreen-componentFirst"></div>
