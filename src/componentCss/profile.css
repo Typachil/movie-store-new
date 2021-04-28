@@ -7,7 +7,7 @@ h1, .profile-registration{
     margin: 5% 0 10% 0;
 }
 
-.profile-user__name img, .profile-user__password img{
+.profile-user__name img, .profile-user__password img, .profile-user__email img{
     margin-left: 10px;
     width: 30px;
     height: 30px;
@@ -42,7 +42,7 @@ form > div{
     background-color: #6B5EA9;
 }
 
-.profile-user__name, .profile-user__password{
+.profile-user__name, .profile-user__password, .profile-user__email{
     width: 100%;
     height: 45px;
     border:1px solid #866FD7;
@@ -54,14 +54,14 @@ input[type="text"]{
     color:white;
 }
 
-.profile-user__name label, .profile-user__password label{
+.profile-user__name label, .profile-user__password label, .profile-user__email label{
     margin: 0;
     flex-grow: 1;
     display: flex;
     justify-content: center;
 }
 
-.user_name,.user_password{
+.user_name,.user_password, .user_email{
     padding-left: 10px;
     flex-grow: 9;
     font-size: 20px;
@@ -73,7 +73,7 @@ input[type="text"]{
     
 }
 
-.profile-user__signIn{
+.profile-user__signUp{
     width: 100%;
     height: 45px;
     background-color: #f8104d;
