@@ -4,6 +4,7 @@
 }
 
 .pages-content{
+    min-height: 510px;
     padding-top: 60px;
     color: #ffffff;
 }

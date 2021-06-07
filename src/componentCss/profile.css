@@ -45,13 +45,12 @@ form > div{
 .profile-user__name, .profile-user__password, .profile-user__email{
     width: 100%;
     height: 45px;
-    border:1px solid #866FD7;
     border-radius: 5px;
-    background-color: #2a2253;
+    background-color: #fff;
 }
 
 input[type="text"]{
-    color:white;
+    color: #000;
 }
 
 .profile-user__name label, .profile-user__password label, .profile-user__email label{
@@ -66,8 +65,9 @@ input[type="text"]{
     flex-grow: 9;
     font-size: 20px;
     border:none;
-    background-color: #2a2253;
+    background-color: transparent;
 }
+
 
 .profile-user__password{
     
