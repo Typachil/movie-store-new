@@ -46,9 +46,9 @@ export default function Footer(){
                     <div>
                         <p>Поддержка</p>
                         <ul>
-                            <li>support@ivi.ru</li>
+                            <li>support@voir.ru</li>
                             <li>8 800 234-49-23</li>
-                            <li>Вопросы и ответы — ask.ivi.ru</li>
+                            <li>Вопросы и ответы — ask.voir.ru</li>
                             <li>Telegram</li>
                             <li>Viber</li>
                             <li>Messenger</li>
@@ -67,7 +67,7 @@ export default function Footer(){
                         <div className="footer-media-icon footer-media__in"></div>
                     </div>
                     <div>
-                        © 2020 ООО «Иви.ру»
+                        © 2020 ООО «Voir.ру»
                     </div>
                 </div>
             </div>
