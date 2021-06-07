@@ -7,7 +7,7 @@ export default function Headers(){
         <header>
             <div className="wrapper">
                 <ul>
-                    <li className="header-logo"><Link to="/"><img src="https://st.tivision.ru/images/_main/ivi-top/logo.svg" alt="фотография"></img></Link></li>
+                    <li className="header-logo"><Link to="/"><img src="/img/g1480.png" alt="фотография"></img></Link></li>
                     <li><Link to="/">Мой ivi</Link></li>
                     <li><Link to="/movies">Фильмы</Link></li>
                     <li><Link to="/cartoon">Мультфильм</Link></li>

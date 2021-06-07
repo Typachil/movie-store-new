@@ -3,10 +3,10 @@ import {Carousel} from 'react-bootstrap';
 
 
 export default function Slider(){
-    let arrayLink = ["https://thumbs.dfs.ivi.ru/storage38/contents/4/f/9dcb22413c38ed7990bc4955a28ac6.jpg/1216x370/",
-    "https://thumbs.dfs.ivi.ru/storage15/contents/6/d/06538105bd85bf5d23e3dca574886a.jpg/1216x370/",
-    "https://thumbs.dfs.ivi.ru/storage15/contents/2/2/f47c964a8417d216007f367086197f.jpg/1216x370/",
-    "https://thumbs.dfs.ivi.ru/storage33/contents/f/8/ea9b90829b1851f32b31d8272207fb.jpg/1216x370/"];
+    let arrayLink = ["https://thumbs.dfs.ivi.ru/storage15/contents/1/0/7370873ee1fe4c88f00bd09f92b7f6.jpg/1216x370/",
+    "https://thumbs.dfs.ivi.ru/storage32/contents/d/9/6b00181f9747fc9b6745137aea9933.jpg/1216x370/",
+    "https://thumbs.dfs.ivi.ru/storage2/contents/9/0/43f8fc600fc38490be7c67861e39be.jpg/1216x370/",
+    "https://thumbs.dfs.ivi.ru/storage6/contents/c/e/2e8285635d5b92dbbfa2ac154ae096.jpg/1216x370/"];
 
     let sliderItems = arrayLink.map((link,key)=> {
         return (

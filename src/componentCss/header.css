@@ -1,6 +1,6 @@
 header{
     position: relative;
-    background-color: #281f55;
+    background-color: #000000;
     height: 60px;
     position: fixed;
     width: 100%;
@@ -8,20 +8,14 @@ header{
     display: block;
 }
 
-header::before {
-    position: absolute;
-    left: -10%;
-    top: 0;
-    width: 22%;
-    height: 100%;
-    content: '';
-    background-color: #f8104d;
-    transform: skewX(-30deg);
-}
-
 header .header-logo{
     z-index: 9999;
 }
+
+header .header-logo img{
+    max-width: 120px;
+}
+
 
 header .on-subs{
     background-color: #f8104d;

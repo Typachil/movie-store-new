@@ -23,7 +23,7 @@ export default function Main(){
                     </button>
                     <button className="main-button main-bonus__button">
                         <img src="https://ds.tivision.ru/20.06.03/picture/_src/spasibo.svg" />
-                        Смотрите ivi за бонусы СПАСИБО
+                        Смотрите Voir за бонусы СПАСИБО
                     </button>
                 </div>
                 <div className="main-recommended">
