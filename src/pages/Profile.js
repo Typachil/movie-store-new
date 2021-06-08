@@ -2,10 +2,15 @@ import React, {useState} from 'react';
 import '../componentCss/profile.css';
 
 export default function Profile(){
+    const [formStateSignUp, setFormStateSignUp] = useState(false);
     const [checkboxState, setCheckboxState] = useState(false);
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
+
+    function formStateSignUpChange(){
+        setFormStateSignUp(!formStateSignUp);
+    }
 
     function checkboxStateChange(event){
         setCheckboxState(!checkboxState);
@@ -18,16 +23,9 @@ export default function Profile(){
             email: userEmail,
             password: userPassword
         };
-        await fetch('http://localhost:7777/signup', {
-            method : 'POST',
-            mode: 'no-cors',
-            headers : {
-                'Content-Type': 'application/json;charset=utf-8'   
-            },
-            body : JSON.stringify(user)
-        })
+        await fetch('/api')
         .then(function (response) {
-            console.log(response);
+            console.log(response.json());
         })
         .catch(function (error) {
             console.log(error);
@@ -41,32 +39,32 @@ export default function Profile(){
             <div className="profile-registration">
                 <form method="post" onSubmit={(event)=> event.preventDefault()}>
                     <div>
-                        <h2>Sign in</h2>
-                        <button className="profile-user__register">Register</button>
+                        <h2>{formStateSignUp ? "Зарегестрироваться" : "Войти"}</h2>
+                        <button className="profile-user__register" onClick={formStateSignUpChange}>{formStateSignUp ? "Войти" : "Зарегестрироваться"}</button>
                     </div>
-                    <div className="profile-user__name">
+                    {!formStateSignUp ? null :<div className="profile-user__name">
                         <label>
                             <img src="/img/profile/user.png"></img>
                             <input type="text" value={userName} onChange={(event) => setUserName(event.target.value)}
-                                name="user_name" className="user_name" placeholder="My name is"></input>
+                                name="user_name" className="user_name" placeholder="Ваше имя"></input>
                         </label>
-                    </div>
+                    </div>}
                     <div className="profile-user__email">
                         <label>
                             <img src="/img/profile/email.png"></img>
                             <input type="text" value={userEmail} onChange={(event) => setUserEmail(event.target.value)}
-                            name="user_email" className="user_email" placeholder="Email"></input>
+                            name="user_email" className="user_email" placeholder="Почта"></input>
                         </label>
                     </div>
                     <div className="profile-user__password">
                         <label>
                             <img src="/img/profile/padlock.png"></img>
-                            <input type="text" value={userPassword} onChange={(event) => setUserPassword(event.target.value)}
-                            name="user_password" className="user_password" placeholder="Password"></input>
+                            <input type="password" value={userPassword} onChange={(event) => setUserPassword(event.target.value)}
+                            name="user_password" className="user_password" placeholder="Пароль"></input>
                         </label>
                     </div>
                     <div>
-                        <button className="profile-user__signUp" onClick={signUp}>Sign in</button>
+                        <button className="profile-user__signUp" onClick={signUp}>{formStateSignUp ? "Зарегестрироваться" : "Войти"}</button>
                     </div>
                     <div>
                         <div>
@@ -77,10 +75,10 @@ export default function Profile(){
                                     <img src="/img/profile/check.png"></img>
                                     <div className="profile-user-remember__switch" style={{left : checkboxState ? 5 + "%" : 55 + "%"}}></div>
                                 </div>
-                                Remember me
+                                Запомнить меня
                             </div>
                         </div>
-                        <div><p className="profile-user__lostPass">Lost your password?</p></div>
+                        <div><p className="profile-user__lostPass">Забыли пароль?</p></div>
                     </div>
                 </form>
             </div>

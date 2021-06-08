@@ -29,7 +29,7 @@ form > div{
 
 .profile-user__register{
     height: 30px;
-    width: 90px;
+    min-width: 90px;
     padding: 0 10px 0 10px;
     color: #866FD7;
     background-color: #2a2253;
