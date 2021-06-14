@@ -7,6 +7,7 @@ export default function Profile(){
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
+    const [repeatUserPassword, setRepeatUserPassword] = useState("");
 
     function formStateSignUpChange(){
         setFormStateSignUp(!formStateSignUp);
@@ -23,7 +24,13 @@ export default function Profile(){
             email: userEmail,
             password: userPassword
         };
-        await fetch('/api')
+        await fetch('/api/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(user)
+        })
         .then(function (response) {
             console.log(response.json());
         })
@@ -63,6 +70,13 @@ export default function Profile(){
                             name="user_password" className="user_password" placeholder="Пароль"></input>
                         </label>
                     </div>
+                    {!formStateSignUp ? null : <div className="profile-user__password">
+                        <label>
+                            <img src="/img/profile/padlock.png"></img>
+                            <input type="password" value={repeatUserPassword} onChange={(event) => setRepeatUserPassword(event.target.value)}
+                            name="user_password" className="user_password" placeholder="Повторите пароль"></input>
+                        </label>
+                    </div>}
                     <div>
                         <button className="profile-user__signUp" onClick={signUp}>{formStateSignUp ? "Зарегестрироваться" : "Войти"}</button>
                     </div>
