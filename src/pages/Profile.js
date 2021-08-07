@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../componentCss/profile.css';
 
 export default function Profile(){
@@ -8,6 +8,11 @@ export default function Profile(){
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
     const [repeatUserPassword, setRepeatUserPassword] = useState("");
+
+    useEffect(() => {
+        getAllUsers()
+    })
+
 
     function formStateSignUpChange(){
         setFormStateSignUp(!formStateSignUp);
@@ -31,14 +36,23 @@ export default function Profile(){
             },
             body: JSON.stringify(user)
         })
-        .then(function (response) {
+        .then((response) => {
             console.log(response.json());
         })
-        .catch(function (error) {
+        .catch((error) => {
             console.log(error);
-        });
-        
-      }
+        });  
+    }
+
+    async function getAllUsers(){
+        await fetch('/api/getusers')
+        .then( (response) =>{
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
 
     return (
         <div className="pages-content wrapper">

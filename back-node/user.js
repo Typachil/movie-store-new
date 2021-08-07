@@ -1,6 +1,6 @@
 let MongoClient = require('mongodb').MongoClient;
 let assert = require('assert');
-let url = 'mongodb://127.0.0.1:27017';
+let url = 'mongodb://127.0.0.1:57266';
 
 module.exports = {
 	signup: (name, email, password) => {
@@ -15,10 +15,10 @@ module.exports = {
 			});
 		});
 	},
-	validateSignIn: (username, password,callback) => {
+	validateSignIn: (email, password, callback) => {
 		MongoClient.connect(url, (err, db) => {
-			console.log(username,password);
-			db.collection('user').findOne( { email : username ,password: password 
+			console.log(email,password);
+			db.collection('user').findOne( { email : email ,password: password 
 			}, (err, result) => {
 				if(result==null){
 					console.log('returning false')
@@ -32,6 +32,11 @@ module.exports = {
 		});
 	},
 	getUsers : () =>{
-
+		MongoClient.connect(url, (err, db) => {
+			db.collection('user').find().toArray((err, results) => {
+				return results;
+				console.log(results)
+			})
+		});
 	}
 }

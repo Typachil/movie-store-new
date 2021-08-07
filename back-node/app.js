@@ -8,14 +8,14 @@ let app = express();
 
 app.use(bodyParser.json());
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
+app.get("/api/getusers", (req, res) => {
+  res.json(user.getUsers());
 });
 
 app.post('/api/signin', (req, res) => {
-  var user_name=req.body.email;
-  var password=req.body.password;
-  user.validateSignIn(user_name,password,function(result){
+  let email = req.body.email;
+  let password = req.body.password;
+  user.validateSignIn(email,password, (result) => {
     if(result){
       res.send('Success')
     }
@@ -27,9 +27,9 @@ app.post('/api/signin', (req, res) => {
 })
 
 app.post('/api/signup', (req, res) => {
-  var name=req.body.name;
-  var email=req.body.email;
-  var password=req.body.password;
+  let name=req.body.name;
+  let email=req.body.email;
+  let password=req.body.password;
 
   if(name && email && password){
   	user.signup(name, email, password)
