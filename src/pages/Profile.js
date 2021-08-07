@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../componentCss/profile.css';
 
 export default function Profile(){
@@ -7,6 +7,12 @@ export default function Profile(){
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userPassword, setUserPassword] = useState("");
+    const [repeatUserPassword, setRepeatUserPassword] = useState("");
+
+    useEffect(() => {
+        getAllUsers()
+    })
+
 
     function formStateSignUpChange(){
         setFormStateSignUp(!formStateSignUp);
@@ -23,15 +29,30 @@ export default function Profile(){
             email: userEmail,
             password: userPassword
         };
-        await fetch('/api')
-        .then(function (response) {
+        await fetch('/api/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(user)
+        })
+        .then((response) => {
             console.log(response.json());
         })
-        .catch(function (error) {
+        .catch((error) => {
             console.log(error);
-        });
-        
-      }
+        });  
+    }
+
+    async function getAllUsers(){
+        await fetch('/api/getusers')
+        .then( (response) =>{
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
 
     return (
         <div className="pages-content wrapper">
@@ -63,6 +84,13 @@ export default function Profile(){
                             name="user_password" className="user_password" placeholder="Пароль"></input>
                         </label>
                     </div>
+                    {!formStateSignUp ? null : <div className="profile-user__password">
+                        <label>
+                            <img src="/img/profile/padlock.png"></img>
+                            <input type="password" value={repeatUserPassword} onChange={(event) => setRepeatUserPassword(event.target.value)}
+                            name="user_password" className="user_password" placeholder="Повторите пароль"></input>
+                        </label>
+                    </div>}
                     <div>
                         <button className="profile-user__signUp" onClick={signUp}>{formStateSignUp ? "Зарегестрироваться" : "Войти"}</button>
                     </div>
