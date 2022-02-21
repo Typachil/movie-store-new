@@ -1,0 +1,14 @@
+.wrapper{
+    width: 1400px;
+    margin:0 auto;
+}
+
+.pages-content{
+    min-height: 510px;
+    padding-top: 60px;
+    color: #ffffff;
+}
+
+body{
+    background-color:#141414 !important;
+}
