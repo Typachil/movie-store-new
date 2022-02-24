@@ -7,8 +7,8 @@ import { useAuth } from "./hooks/auth.hook";
 import { AuthContext } from "./context/AuthContext";
 
 export default function App({children}) {
-  const {token, login, logout, userId, ready} = useAuth()
-  const isAuthenticated = !!token
+  const {token, login, logout, userId, ready} = useAuth();
+  const isAuthenticated = !!token;
   return (
     <AuthContext.Provider value = {{
       token, login, logout, userId, isAuthenticated

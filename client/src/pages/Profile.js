@@ -9,56 +9,58 @@ export default function Profile() {
     const [storageData, setStorageData] = useState({name: "", surname: ""})
     const [formStateSignUp, setFormStateSignUp] = useState(false);
     const [checkboxState, setCheckboxState] = useState(false);
+    const [messageForm, setMessageForm] = useState('')
     const [form, setForm] = useState({
         name: "", surname: "", email: "", password: "", date: null
     })
 
     useEffect(async() => {
         try {
-            console.log(auth.isAuthenticated)
-            let storage = localStorage.getItem("userData");
-            let data = await request(`/api/userdata/${storage.userId}`, 'GET', null, {
-                Authorization: `Bearer ${storage.token}`
-            });
-            setStorageData({...storageData, name : data.name, surname: data.surname});
+            let storage = JSON.parse(localStorage.getItem("userData"));
+            if(storage.token){
+                let data = await request(`/api/userdata/${storage.userId}`, 'GET', null, {
+                    Authorization: `Bearer ${storage.token}`
+                });
+                setStorageData({...storageData, name : data.name, surname: data.surname});
+            }
             console.log(storageData)
         } catch (e) {
             console.log(e)
         }
     } , [auth.token])
 
-function setFormValue(event) {
-    setForm({ ...form, [event.target.name]: event.target.value })
-}
+    function setFormValue(event) {
+        setForm({ ...form, [event.target.name]: event.target.value })
+    }
 
-function formStateSignUpChange() {
-    setFormStateSignUp(!formStateSignUp);
-}
-
-function checkboxStateChange(event) {
-    setCheckboxState(!checkboxState);
-    event.stopPropagation();
-}
-
-async function signUp() {
-    try {
-        let message = await request('/api/auth/register', 'POST', { ...form, date: new Date().toString() });
-        console.log(message)
+    function formStateSignUpChange() {
         setFormStateSignUp(!formStateSignUp);
-    } catch (e) {
-        console.log(e)
     }
-}
 
-async function signIn() {
-    try {
-        let message = await request('/api/auth/login', 'POST', { email: form.email, password: form.password });
-        auth.login(message.token, message.userId)
-        console.log(message)
-    } catch (e) {
-        console.log(e)
+    function checkboxStateChange(event) {
+        setCheckboxState(!checkboxState);
+        event.stopPropagation();
     }
-}
+
+    async function signUp() {
+        try {
+            let message = await request('/api/auth/register', 'POST', { ...form, date: new Date().toString() });
+            setMessageForm(message);
+            setFormStateSignUp(!formStateSignUp);
+        } catch (e) {
+            setMessageForm(e)
+        }
+    }
+
+    async function signIn() {
+        try {
+            let message = await request('/api/auth/login', 'POST', { email: form.email, password: form.password });
+            auth.login(message.token, message.userId)
+            setMessageForm(message);
+        } catch (e) {
+            setMessageForm(e)
+        }
+    }
 
 return (
     <div className="pages-content wrapper">
@@ -106,6 +108,7 @@ return (
                     </label>
                 </div>
                 <div>
+                    <div className='profile-user__message'>{messageForm}</div>
                     {formStateSignUp ?
                         <button className="profile-user__signUp" onClick={signUp}>Зарегестрироваться</button> :
                         <button className="profile-user__signUp" onClick={signIn}>Войти</button>}
