@@ -16,7 +16,6 @@ export const useAuth = () => {
     }))
   }
 
-
   const logout = () => {
     setToken(null)
     setUserId(null)

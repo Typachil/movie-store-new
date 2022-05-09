@@ -17,7 +17,7 @@ export default function Profile() {
     useEffect(async() => {
         try {
             let storage = JSON.parse(localStorage.getItem("userData"));
-            if(storage.token){
+            if(auth.token){
                 let data = await request(`/api/userdata/${storage.userId}`, 'GET', null, {
                     Authorization: `Bearer ${storage.token}`
                 });
@@ -56,7 +56,6 @@ export default function Profile() {
         try {
             let message = await request('/api/auth/login', 'POST', { email: form.email, password: form.password });
             auth.login(message.token, message.userId)
-            setMessageForm(message);
         } catch (e) {
             setMessageForm(e)
         }
@@ -65,7 +64,7 @@ export default function Profile() {
 return (
     <div className="pages-content wrapper">
         <h1>Мой профиль</h1>
-        {auth.isAuthenticated || 
+        {!auth.isAuthenticated || 
             <div>
                 <div>{storageData.name}</div>
                 <div>{storageData.surname}</div>
