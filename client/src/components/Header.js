@@ -12,7 +12,6 @@ export default function Headers(){
                     <li><Link to="/cartoon">Мультфильм</Link></li>
                     <li><Link to="/series">Сериалы</Link></li>
                     <li><Link to="/sport">Спорт</Link></li>
-                    <li><Link to="/TVchannel">ТВ-каналы</Link></li>
                     <li><Link to="/collections">Подборки</Link></li>
                     <li className="on-subs"><Link to="/subscribe">Подключить подписку</Link></li>
                     <li><input className="header-search" type="text" placeholder="Поиск"/></li>
