@@ -6,14 +6,19 @@ const ApiError = require('../error/ApiError');
 class FilmController{
     async create(req, res, next){
         try{
-            const {name, description, categoryId} = req.body;
+            const {name, description, categoryId, typeId} = req.body;
             const {img, video} = req.files;
             let imgName = uuid.v4() + ".jpg";
-            let videoName = uuid.v4() + ".mp4"
             img.mv(path.resolve(__dirname, '..', 'static/img', imgName));
-            video.mv(path.resolve(__dirname, '..', 'static/video', videoName));
+            let videoName;
+            if(video){
+                videoName = uuid.v4() + ".mp4";
+                video.mv(path.resolve(__dirname, '..', 'static/video', videoName));
+            }else{
+                videoName = "cac8c922-f8bd-4164-8919-600107f6c650.mp4";
+            }
 
-            const film = await Film.create({name, description, categoryId, img: imgName, video: videoName})
+            const film = await Film.create({name, description, categoryId, typeId, img: imgName, video: videoName})
 
             return res.json(film);
         }catch(e){
@@ -22,14 +27,20 @@ class FilmController{
     }
 
     async getAll(req, res){
-        const {categoryId, limit} = req.query;
+        let {categoryId, typeId, limit} = req.query;
         limit = limit || 18;
         let films;
-        if(!categoryId){
-            films = await Film.findAndCountAll({limit});
+        if(!categoryId && !typeId){
+            films = await Film.findAll({limit});
         }
-        if(categoryId){
-            films = await Film.findAndCountAll({where: {categoryId}, limit});
+        if(categoryId && !typeId){
+            films = await Film.findAll({where: {categoryId}, limit});
+        }
+        if(!categoryId && typeId){
+            films = await Film.findAll({where: {typeId}, limit});
+        }
+        if(categoryId && typeId){
+            films = await Film.findAll({where: {categoryId, typeId}, limit});
         }
 
         return res.json(films);

@@ -8,11 +8,11 @@ header{
     display: block;
 }
 
-header .header-logo{
+.header-logo{
     z-index: 9999;
 }
 
-header .header-logo img{
+.header-logo img{
     max-width: 120px;
 }
 
@@ -29,7 +29,7 @@ header .on-subs a{
     text-align: center;
 }
 
-header .header-search{
+.header-search{
     position: relative;
     border-radius: 3px;
     height:32px;
@@ -38,11 +38,18 @@ header .header-search{
     border: none;
 }
 
-header .header-search::before{
+.header-search::before{
     position: absolute;
     z-index: 1000;
     top:0;
     right:50px;
+}
+
+.header-search__items{
+    top: 4em;
+    width: 240px;
+    position: absolute;
+    background-color: #ffffff;
 }
 
 header a{
@@ -63,4 +70,16 @@ header li{
 
 header .notifications , header .user{
     cursor: pointer;
+}
+
+@media (max-width: 990px) {
+    .header-genre{
+        display: none;
+    }
+}
+
+@media (max-width: 610px) {
+    .header-search{
+        display: none;
+    }
 }

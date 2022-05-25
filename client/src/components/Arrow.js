@@ -3,6 +3,7 @@ import '../componentCss/sliderMin.css';
 
 export default function Arrow(props){
     let {position,actions,direction} = props;
+    console.log(position)
     let shutdownButton = direction === "left" ? position : -position !== 2460;
     return (
         shutdownButton ? <div className={`arrow-${direction}`} onClick={actions}>

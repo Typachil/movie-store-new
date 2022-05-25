@@ -21,12 +21,17 @@ const Film = sequelize.define('film', {
   id : {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   name: {type: DataTypes.STRING, allowNull: false},
   img: {type: DataTypes.STRING, allowNull: false},
-  rating: {type: DataTypes.INTEGER, defaultValue: 0},
+  rating: {type: DataTypes.FLOAT, defaultValue: 0},
   video: {type: DataTypes.STRING, allowNull: false},
-  description : {type: DataTypes.STRING, allowNull: false}
+  description : {type: DataTypes.STRING(1234), allowNull: false}
 })
 
 const Category = sequelize.define('category', {
+  id : {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+  name: {type: DataTypes.STRING, unique: true, allowNull: false}
+})
+
+const Type = sequelize.define('type', {
   id : {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
   name: {type: DataTypes.STRING, unique: true, allowNull: false}
 })
@@ -48,6 +53,9 @@ HistoryFilms.belongsTo(History);
 Category.hasMany(Film);
 Film.belongsTo(Category);
 
+Type.hasMany(Film);
+Film.belongsTo(Type);
+
 Film.hasMany(Rating);
 Rating.belongsTo(Film);
 
@@ -60,5 +68,6 @@ module.exports = {
   HistoryFilms,
   Film,
   Category,
-  Rating
+  Rating,
+  Type
 }
