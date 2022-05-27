@@ -5,7 +5,7 @@ export default function Footer(){
     return (
         <footer>
             <div className="footer-nav-wrapper">
-                <div className="footer-nav">
+                <div className="footer-nav container">
                     <div>
                         <p>Разделы</p>
                         <ul>
@@ -57,7 +57,7 @@ export default function Footer(){
                 </div>
             </div>
             <div className="footer-media-wrapper">
-                <div className="footer-media">
+                <div className="footer-media container">
                     <div className="footer-media-icons">
                         <p>Присоединяйтесь:</p>
                         <div className="footer-media-icon footer-media__vk"></div>

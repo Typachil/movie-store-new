@@ -1,40 +1,20 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import App from './App';
+import UserStore from './store/UserStore';
+import FilmStore from './store/FilmStore'
 
-import App from './App'
-import Home from './pages/Home';
-import Movies from './pages/Movies';
-import Series from './pages/Series';
-import Cartoon from './pages/Cartoon';
-import Sport from './pages/Sport';
-import Collections from './pages/Collections';
-import Profile from './pages/Profile';
-import Subscribe from './pages/Subscribe';
-import MoviePage from './pages/MoviePage';
-import Error from './pages/Error';
-
-
+export const Context = createContext(null);
 ReactDOM.render(
-  <BrowserRouter>
-    <App>
-      <Switch>
-        <Route exact path="/" component={Home}></Route>
-        <Route path="/film/:id" component={MoviePage}></Route>
-        <Route path="/movies" component={Movies}></Route>
-        <Route path="/cartoon" component={Cartoon}></Route>
-        <Route path="/series" component={Series}></Route>
-        <Route path="/sport" component={Sport}></Route>
-        <Route path="/collections" component={Collections}></Route>
-        <Route path="/profile" component={Profile}></Route>
-        <Route path="/subscribe" component={Subscribe}></Route>
-        <Route path='*' component={Error}></Route>
-      </Switch>
-    </App>
-  </BrowserRouter>,
+    <Context.Provider value={{
+      user: new UserStore(),
+      film: new FilmStore() 
+    }}>
+      <App/>
+    </Context.Provider>,
   document.getElementById('root')
 );
 
