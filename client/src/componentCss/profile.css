@@ -13,7 +13,7 @@ h1, .profile-registration{
     height: 30px;
 }
 
-.profile-registration form{
+form{
     width: 400px;
     min-height: 400px;
     display: flex;
@@ -21,7 +21,7 @@ h1, .profile-registration{
     justify-content: space-between;
 }
 
-.profile-registration form > div{
+form > div{
     display: flex;
     justify-content: space-between;
     align-items: center;

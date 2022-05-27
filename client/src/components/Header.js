@@ -1,60 +1,24 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import {Link, useHistory} from "react-router-dom";
-import { Context } from "../index";
+import React from "react";
+import {Link} from "react-router-dom";
 import "../componentCss/header.css";
-import { CARTOON_ROUTE, COLLECTIONS_ROUTE, HOME_ROUTE, LOGIN_ROUTE, MOVIES_ROUTE, MOVIE_ROUTE, PROFILE_ROUTE, SERIES_ROUTE } from "../utils/consts";
-import { observer } from "mobx-react-lite";
-import { fetchFilms } from "../http/filmAPI";
 
-const Headers = observer(() =>{
-    const {user, film} = useContext(Context);
-    const [valueSearch, setValueSearch] = useState("");
-    const history = useHistory();
-
-    useEffect(()=>{
-        fetchFilms(null, null).then(data => film.setFilms(data))
-    }, [])
-
-    const filteredFilms = useMemo(() => {
-        console.log(film.films)
-        if(valueSearch){
-            return film.films.filter(item => item.name.toLowerCase().includes(valueSearch.toLowerCase()));
-        }
-        return [];
-    }, [valueSearch])
-
-    function onChaneValue(e){
-        setValueSearch(e.target.value);
-    }
+export default function Headers(){
     return (
         <header>
-            <div className="container">
+            <div className="wrapper">
                 <ul>
-                    <li className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></li>
-                    <li className="header-genre"><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
-                    <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
-                    <li className="header-genre"><Link to={SERIES_ROUTE}>Сериалы</Link></li>
-                    <li className="header-genre"><Link to={COLLECTIONS_ROUTE}>Подборки</Link></li>
-                    <li>
-                        <input className="header-search" type="text" placeholder="Поиск" onChange={onChaneValue} value={valueSearch}/>
-                        <div className="header-search__items">
-                            {filteredFilms.map((item, key) => {
-                                return(<div onClick={() => {history.push(MOVIE_ROUTE + '/' + item.id); setValueSearch("")}} className="d-flex justify-content-around p-2 border-bottom border-dark" style={{cursor:'pointer'}} key={key}>
-                                    <img src={process.env.REACT_APP_API_URL + "img/" + item.img} height="150px" width="100px"></img>
-                                    <div>
-                                        <p>{item.name}</p>
-                                        <p>Рейтинг: {item.rating}/10</p>
-                                    </div>
-                                </div>)
-                            })}
-                        </div>
-                    </li>
+                    <li className="header-logo"><Link to="/"><img src="/img/g1480.png" alt="фотография"></img></Link></li>
+                    <li><Link to="/movies">Фильмы</Link></li>
+                    <li><Link to="/cartoon">Мультфильм</Link></li>
+                    <li><Link to="/series">Сериалы</Link></li>
+                    <li><Link to="/sport">Спорт</Link></li>
+                    <li><Link to="/collections">Подборки</Link></li>
+                    <li className="on-subs"><Link to="/subscribe">Подключить подписку</Link></li>
+                    <li><input className="header-search" type="text" placeholder="Поиск"/></li>
                     <li className="notifications"><img src="/img/bell.png" width="32px" height="32px" alt="фотография"></img></li>
-                    <li className="user"><Link to={user._isAuth?PROFILE_ROUTE:LOGIN_ROUTE}><img width="32px" height="32px" src="/img/user.png" alt="фотография"></img></Link></li>
+                    <li className="user"><Link to="/profile"><img width="32px" height="32px" src="/img/user.png" alt="фотография"></img></Link></li>
                 </ul>
             </div>
         </header>
     )
-});
-
-export default Headers;
+}

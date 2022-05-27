@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Series(){
+export default function Subscribe(){
     return (
         <div className="pages-content wrapper">
-            <h1>Сериалы смотреть онлайн</h1>
+            <h1>Подписка ivi</h1>
         </div>
     )
 }

@@ -5,13 +5,13 @@
 
 .main-recomended-slider{
     display: flex;
+    justify-content: space-between;
     transition: all 0.7s ease-in-out;
 }
 
 .main-recomended-slider__item{
     margin-right: 33px;
     color:#ffffff;
-    cursor: pointer;
 }
 
 .main-recomended-slider__item:hover{

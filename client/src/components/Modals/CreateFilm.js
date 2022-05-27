@@ -16,7 +16,6 @@ export const CreateFilm = observer(({show, onHide}) => {
 
     function setFormValue(event) {
         setForm({ ...form, [event.target.name]: event.target.value })
-        console.log(form)
     };
 
     function selectFile(event){

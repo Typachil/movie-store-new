@@ -8,8 +8,11 @@ footer{
 }
 
 .footer-nav{
+    margin: 0 auto;
+    width: 1100px;
     display: flex;
     justify-content: space-between;
+    padding: 25px 0 10px 0;
 }
 
 .footer-nav p{
@@ -25,6 +28,9 @@ footer{
 }
 
 .footer-media{
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 1100px; 
     display: flex;
     justify-content: space-between;
 }

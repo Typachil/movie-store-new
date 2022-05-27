@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Series(){
+export default function Sport(){
     return (
         <div className="pages-content wrapper">
-            <h1>Сериалы смотреть онлайн</h1>
+            <h1>Спорт</h1>
         </div>
     )
 }
