@@ -4,7 +4,8 @@
   "description": "Online kinoteatr",
   "main": "app.js",
   "engines": {
-    "node": "16.13.1"
+    "node": "16.13.1",
+    "npm": "7.15.0"
   },
   "scripts": {
     "start": "npm install && node app.js",
