@@ -1,6 +1,4 @@
 const { Sequelize } = require('sequelize');
-require("dotenv").config();
-
 
 module.exports = new Sequelize({
     use_env_variable: process.env.DATABASE_URL,
