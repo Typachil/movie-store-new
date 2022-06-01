@@ -30,7 +30,7 @@ const Headers = observer(() => {
     return (
         <header>
             <div className="container d-flex justify-content-between">
-                <ul className="d-flex justify-content-start">
+                <ul className="d-flex">
                     <li className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></li>
                     <div id="menu">
                         <div id="menu-bar" className={changeBurger && "change"} onClick={() => setChangeBurger(!changeBurger)}>
@@ -38,7 +38,7 @@ const Headers = observer(() => {
                             <div id="bar2" className="bar"></div>
                             <div id="bar3" className="bar"></div>
                         </div>
-                        <nav className={"nav" + changeBurger && "change"} id="nav">
+                        <nav className={"nav" + (changeBurger && "change")} id="nav">
                             <ul>
                                 <li><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
                                 <li><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
@@ -47,14 +47,14 @@ const Headers = observer(() => {
                             </ul>
                         </nav>
                     </div>
-                    <div className={"menu-bg" + changeBurger && "change-bg"} id="menu-bg"></div>
+                    <div className={"menu-bg" + (changeBurger && "change-bg")} id="menu-bg"></div>
 
                     <li className="header-genre"><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
                     <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
                     <li className="header-genre"><Link to={SERIES_ROUTE}>Сериалы</Link></li>
                     <li className="header-genre"><Link to={COLLECTIONS_ROUTE}>Подборки</Link></li>
                 </ul>
-                <ul className="d-flex justify-content-end">
+                <ul className="d-flex">
                     <li>
                         <input className="header-search" type="text" placeholder="Поиск" onChange={onChangeValue} value={valueSearch} />
                         <div className="header-search__items">
