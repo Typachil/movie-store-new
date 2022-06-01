@@ -14,11 +14,10 @@ const Headers = observer(() => {
 
     useEffect(() => {
         fetchFilms(null, null).then(data => film.setFilms(data))
-        console.log(changeBurger)
     }, [])
 
     const filteredFilms = useMemo(() => {
-        console.log(film.films)
+        console.log(changeBurger)
         if (valueSearch) {
             return film.films.filter(item => item.name.toLowerCase().includes(valueSearch.toLowerCase()));
         }
