@@ -33,7 +33,7 @@ const Headers = observer(() => {
                 <ul className="d-flex justify-content-start">
                     <li className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></li>
                     <div id="menu">
-                        <div id="menu-bar" className={changeBurger && "change"} onClick={() => console.log("fsaf")}>
+                        <div id="menu-bar" className={changeBurger && "change"} onClick={() => setChangeBurger(!changeBurger)}>
                             <div id="bar1" className="bar"></div>
                             <div id="bar2" className="bar"></div>
                             <div id="bar3" className="bar"></div>
