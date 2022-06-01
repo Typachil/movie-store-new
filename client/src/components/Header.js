@@ -30,10 +30,10 @@ const Headers = observer(() => {
     return (
         <header>
             <div className="container">
-                <ul>
+                <ul className="d-flex justify-content-start">
                     <li className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></li>
                     <div id="menu">
-                        <div id="menu-bar" className={changeBurger && "change"} onСlick={() => setChangeBurger(!changeBurger)}>
+                        <div id="menu-bar" className={changeBurger && "change"} onСlick={() => console.log("fsaf")}>
                             <div id="bar1" className="bar"></div>
                             <div id="bar2" className="bar"></div>
                             <div id="bar3" className="bar"></div>
@@ -53,6 +53,8 @@ const Headers = observer(() => {
                     <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
                     <li className="header-genre"><Link to={SERIES_ROUTE}>Сериалы</Link></li>
                     <li className="header-genre"><Link to={COLLECTIONS_ROUTE}>Подборки</Link></li>
+                </ul>
+                <ul className="d-flex justify-content-end">
                     <li>
                         <input className="header-search" type="text" placeholder="Поиск" onChange={onChaneValue} value={valueSearch} />
                         <div className="header-search__items">
