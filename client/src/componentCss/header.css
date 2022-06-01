@@ -79,15 +79,13 @@ header .user {
 
 #menu-bar {
     width: 45px;
-    height: 40px;
-    margin: 30px 0 20px 20px;
     cursor: pointer;
 }
 
 .bar {
     height: 5px;
     width: 100%;
-    background-color: #DC052D;
+    background-color: #c8c0ed;
     display: block;
     border-radius: 5px;
     transition: 0.3s ease;
@@ -127,17 +125,14 @@ header .user {
 
 .menu-bg,
 #menu {
-    top: 0;
-    left: 0;
-    position: absolute;
+    
 }
 
 .menu-bg {
     z-index: 1;
     width: 0;
     height: 0;
-    margin: 30px 0 20px 20px;
-    background: radial-gradient(circle, #DC052D, #DC052D);
+    background: radial-gradient(circle, #c8c0ed, #c8c0ed);
     border-radius: 50%;
     transition: 0.3s ease;
 }

@@ -19,7 +19,7 @@ export default function Slider(){
         )
     })
     return (
-        <Carousel style={{top:"100px"}}>
+        <Carousel style={{top:"55px"}}>
             {sliderItems}
         </Carousel>
     )

@@ -14,6 +14,7 @@ const Headers = observer(() => {
 
     useEffect(() => {
         fetchFilms(null, null).then(data => film.setFilms(data))
+        console.log(changeBurger)
     }, [])
 
     const filteredFilms = useMemo(() => {
@@ -47,7 +48,7 @@ const Headers = observer(() => {
                             </ul>
                         </nav>
                     </div>
-                    <div className={"menu-bg" || changeBurger && "change"} id="menu-bg"></div>
+                    <div className={"menu-bg" || changeBurger && "change-bg"} id="menu-bg"></div>
 
                     <li className="header-genre"><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
                     <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
