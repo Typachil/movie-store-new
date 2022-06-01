@@ -38,7 +38,7 @@ const Headers = observer(() => {
                             <div id="bar2" className="bar"></div>
                             <div id="bar3" className="bar"></div>
                         </div>
-                        <nav className={"nav" || changeBurger && "change"} id="nav">
+                        <nav className={"nav" + changeBurger && "change"} id="nav">
                             <ul>
                                 <li><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
                                 <li><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
@@ -47,7 +47,7 @@ const Headers = observer(() => {
                             </ul>
                         </nav>
                     </div>
-                    <div className={"menu-bg" || changeBurger && "change-bg"} id="menu-bg"></div>
+                    <div className={"menu-bg" + changeBurger && "change-bg"} id="menu-bg"></div>
 
                     <li className="header-genre"><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
                     <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
