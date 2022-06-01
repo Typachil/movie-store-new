@@ -14,7 +14,7 @@ const Main = observer(() =>{
     return(
         <main>
             <div className="container">
-                <div className="main-bonus">
+                {/* <div className="main-bonus">
                     <button className="main-button main-gift__button">
                         <img width="70px" height="40px" src="/img/present.png" />
                         Подарите подписку близким
@@ -23,7 +23,7 @@ const Main = observer(() =>{
                         <img src="https://ds.tivision.ru/20.06.03/picture/_src/spasibo.svg" />
                         Смотрите Voir за бонусы СПАСИБО
                     </button>
-                </div>
+                </div> */}
                 <div className="main-description">
                     <h3>Онлайн-кинотеатр Voir: фильмы в хорошем качестве всегда приносят настоящее удовольствие</h3>
                     <div className="main-description_contentDiv">

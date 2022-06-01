@@ -65,3 +65,9 @@ footer{
 .footer-media__in{
     background-position: 98% 50%;
 }
+
+@media (max-width: 770px) {
+    .footer-nav-wrapper{
+        display: none;
+    }
+}
