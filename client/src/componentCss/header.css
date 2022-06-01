@@ -66,6 +66,7 @@ header ul {
 
 header li {
     list-style-type: none;
+    margin-right: 15px;
 }
 
 header .notifications,

@@ -24,16 +24,16 @@ const Headers = observer(() => {
         return [];
     }, [valueSearch])
 
-    function onChaneValue(e) {
+    function onChangeValue(e) {
         setValueSearch(e.target.value);
     }
     return (
         <header>
-            <div className="container">
+            <div className="container d-flex justify-content-between">
                 <ul className="d-flex justify-content-start">
                     <li className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></li>
                     <div id="menu">
-                        <div id="menu-bar" className={changeBurger && "change"} onСlick={() => console.log("fsaf")}>
+                        <div id="menu-bar" className={changeBurger && "change"} onClick={() => console.log("fsaf")}>
                             <div id="bar1" className="bar"></div>
                             <div id="bar2" className="bar"></div>
                             <div id="bar3" className="bar"></div>
@@ -56,7 +56,7 @@ const Headers = observer(() => {
                 </ul>
                 <ul className="d-flex justify-content-end">
                     <li>
-                        <input className="header-search" type="text" placeholder="Поиск" onChange={onChaneValue} value={valueSearch} />
+                        <input className="header-search" type="text" placeholder="Поиск" onChange={onChangeValue} value={valueSearch} />
                         <div className="header-search__items">
                             {filteredFilms.map((item, key) => {
                                 return (<div onClick={() => { history.push(MOVIE_ROUTE + '/' + item.id); setValueSearch("") }} className="d-flex justify-content-around p-2 border-bottom border-dark" style={{ cursor: 'pointer' }} key={key}>
