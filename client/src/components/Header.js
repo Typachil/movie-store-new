@@ -30,7 +30,7 @@ const Headers = observer(() => {
     return (
         <header>
             <div className="container d-flex justify-content-between">
-                <div>
+                <div className="divHeader">
                     <div className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></div>
                     <div id="menu">
                         <div id="menu-bar" className={changeBurger && "change"} onClick={() => setChangeBurger(!changeBurger)}>
@@ -48,14 +48,14 @@ const Headers = observer(() => {
                         </nav>
                     </div>
                     <div className={changeBurger ? "menu-bg change-bg" : "menu-bg"} id="menu-bg"></div>
-                    <ul className="navLinks">
+                    <ul className="divHeader">
                         <li className="header-genre"><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
                         <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
                         <li className="header-genre"><Link to={SERIES_ROUTE}>Сериалы</Link></li>
                         <li className="header-genre"><Link to={COLLECTIONS_ROUTE}>Подборки</Link></li>
                     </ul>
                 </div>
-                <div>
+                <div className="divHeader">
                     <div>
                         <input className="header-search" type="text" placeholder="Поиск" onChange={onChangeValue} value={valueSearch} />
                         <div className="header-search__items">
