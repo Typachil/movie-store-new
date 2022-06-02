@@ -30,8 +30,8 @@ const Headers = observer(() => {
     return (
         <header>
             <div className="container d-flex justify-content-between">
-                <ul className="d-flex">
-                    <li className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></li>
+                <div>
+                    <div className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></div>
                     <div id="menu">
                         <div id="menu-bar" className={changeBurger && "change"} onClick={() => setChangeBurger(!changeBurger)}>
                             <div id="bar1" className="bar"></div>
@@ -48,14 +48,15 @@ const Headers = observer(() => {
                         </nav>
                     </div>
                     <div className={changeBurger ? "menu-bg change-bg" : "menu-bg"} id="menu-bg"></div>
-
-                    <li className="header-genre"><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
-                    <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
-                    <li className="header-genre"><Link to={SERIES_ROUTE}>Сериалы</Link></li>
-                    <li className="header-genre"><Link to={COLLECTIONS_ROUTE}>Подборки</Link></li>
-                </ul>
-                <ul className="d-flex">
-                    <li>
+                    <ul className="navLinks">
+                        <li className="header-genre"><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
+                        <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
+                        <li className="header-genre"><Link to={SERIES_ROUTE}>Сериалы</Link></li>
+                        <li className="header-genre"><Link to={COLLECTIONS_ROUTE}>Подборки</Link></li>
+                    </ul>
+                </div>
+                <div>
+                    <div>
                         <input className="header-search" type="text" placeholder="Поиск" onChange={onChangeValue} value={valueSearch} />
                         <div className="header-search__items">
                             {filteredFilms.map((item, key) => {
@@ -68,10 +69,10 @@ const Headers = observer(() => {
                                 </div>)
                             })}
                         </div>
-                    </li>
+                    </div>
                     {/* <li className="notifications"><img src="/img/bell.png" width="32px" height="32px" alt="фотография"></img></li> */}
-                    <li className="user"><Link to={user._isAuth ? PROFILE_ROUTE : LOGIN_ROUTE}><img width="32px" height="32px" src="/img/user.png" alt="фотография"></img></Link></li>
-                </ul>
+                    <div className="user"><Link to={user._isAuth ? PROFILE_ROUTE : LOGIN_ROUTE}><img width="32px" height="32px" src="/img/user.png" alt="фотография"></img></Link></div>
+                </div>
             </div>
         </header>
     )

@@ -16,7 +16,6 @@ header {
     max-width: 120px;
 }
 
-
 header .on-subs {
     background-color: #f8104d;
     border-radius: 3px;
@@ -57,7 +56,7 @@ header a {
     color: #ffffff;
 }
 
-header ul {
+.navLinks {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -134,6 +133,8 @@ header .user {
     z-index: 1;
     width: 0;
     height: 0;
+    position: absolute;
+    top: 0;
     background: radial-gradient(circle, #c8c0ed, #c8c0ed);
     border-radius: 50%;
     transition: 0.3s ease;
