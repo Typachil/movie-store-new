@@ -75,11 +75,11 @@ header .user {
 
 .hamburger{
     display: none;
+    position: relative;
 }
 
 #menu-bar {
     z-index: 2;
-    display: none;
     width: 45px;
     cursor: pointer;
 }
@@ -88,6 +88,12 @@ header .user {
     display: none;
     flex-direction: column;
     justify-content: space-between;
+    position: absolute;
+    top: 2em;
+    left: -2.5em;
+    background-color: #c8c0ed;
+    border-radius: 10%;
+    padding: 10px;
 }
 
 .bar {
@@ -140,7 +146,7 @@ header .user {
     }
 }
 
-@media (max-width: 610px) {
+@media (max-width: 540px) {
     .header-search {
         display: none;
     }

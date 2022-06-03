@@ -32,9 +32,9 @@ const Headers = observer(() => {
         <header className="d-flex align-items-center">
             <div className="container d-flex justify-content-between">
                 <div className="divHeader">
-                    <div className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></div>
+                    <div className="header-logo mr-2"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></div>
                     <div className="hamburger">
-                        <div id="menu-bar" className={changeBurger && "change"} onClick={() => setChangeBurger(!changeBurger)}>
+                        <div id="menu-bar" className={changeBurger ? "change" : ""} onClick={() => setChangeBurger(!changeBurger)}>
                             <div id="bar1" className="bar"></div>
                             <div id="bar2" className="bar"></div>
                             <div id="bar3" className="bar"></div>
@@ -55,7 +55,7 @@ const Headers = observer(() => {
                 </div>
                 <div className="divHeader">
                     <div>
-                        <input className="header-search" type="text" placeholder="Поиск" onChange={onChangeValue} value={valueSearch} />
+                        <input className="header-search mr-2" type="text" placeholder="Поиск" onChange={onChangeValue} value={valueSearch} />
                         <div className="header-search__items">
                             {filteredFilms.map((item, key) => {
                                 return (<div onClick={() => { history.push(MOVIE_ROUTE + '/' + item.id); setValueSearch("") }} className="d-flex justify-content-around p-2 border-bottom border-dark" style={{ cursor: 'pointer' }} key={key}>
