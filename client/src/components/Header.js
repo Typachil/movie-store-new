@@ -33,27 +33,19 @@ const Headers = observer(() => {
             <div className="container d-flex justify-content-between">
                 <div className="divHeader">
                     <div className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></div>
+                    <div className="hamburger">
                         <div id="menu-bar" className={changeBurger && "change"} onClick={() => setChangeBurger(!changeBurger)}>
                             <div id="bar1" className="bar"></div>
                             <div id="bar2" className="bar"></div>
                             <div id="bar3" className="bar"></div>
                         </div>
-                        <Dropdown>
-                            <Dropdown.Toggle id="dropdown-basic">
-                                <div id="menu-bar" className={changeBurger && "change"} onClick={() => setChangeBurger(!changeBurger)}>
-                                    <div id="bar1" className="bar"></div>
-                                    <div id="bar2" className="bar"></div>
-                                    <div id="bar3" className="bar"></div>
-                                </div>
-                            </Dropdown.Toggle>
-
-                            <Dropdown.Menu>
-                                <Dropdown.Item href={MOVIES_ROUTE}>Фильмы</Dropdown.Item>
-                                <Dropdown.Item href={CARTOON_ROUTE}>Мультфильмы</Dropdown.Item>
-                                <Dropdown.Item href={SERIES_ROUTE}>Сериалы</Dropdown.Item>
-                                <Dropdown.Item href={COLLECTIONS_ROUTE}>Подборки</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
+                        <div className={changeBurger ? "menu-links change-links" : "menu-links"}>
+                            <Link to={MOVIES_ROUTE}>Фильмы</Link>
+                            <Link to={CARTOON_ROUTE}>Мультфильмы</Link>
+                            <Link to={SERIES_ROUTE}>Сериалы</Link>
+                            <Link to={COLLECTIONS_ROUTE}>Подборки</Link>
+                        </div>
+                    </div>
                     <ul className="divHeader">
                         <li className="header-genre"><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
                         <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>

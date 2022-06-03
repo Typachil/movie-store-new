@@ -60,7 +60,6 @@ header a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0 0 0;
     margin-bottom: 0 !important;
 }
 
@@ -74,11 +73,21 @@ header .user {
     cursor: pointer;
 }
 
+.hamburger{
+    display: none;
+}
+
 #menu-bar {
     z-index: 2;
     display: none;
     width: 45px;
     cursor: pointer;
+}
+
+.menu-links{
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .bar {
@@ -102,6 +111,10 @@ header .user {
     display: block;
 }
 
+.change-links{
+    display: flex;
+}
+
 .change .bar {
     background-color: white;
 }
@@ -122,7 +135,7 @@ header .user {
     .header-genre {
         display: none;
     }
-    #menu-bar{
+    .hamburger{
         display: block;
     }
 }
