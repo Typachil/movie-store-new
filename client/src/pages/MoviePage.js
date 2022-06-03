@@ -41,8 +41,8 @@ const MoviePage = observer(() => {
                     <div>Рейтинг: {filmOne.rating}/10</div>
                     <p>Краткое описание: <br/> {filmOne.description}</p>
                     <div className='rating-area'>
-                        <span>Ваш рейтинг: </span>
                         {getRatingBar()}
+                        <span>Ваш рейтинг: </span>
                     </div>
                 </Col>
             </Row>

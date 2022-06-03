@@ -10,6 +10,7 @@ body{
 
 .rating-area {
 	display: flex;
+	flex-direction: row-reverse;
 	overflow: hidden;
 	margin: 0 auto;
 }
