@@ -18,7 +18,7 @@ export default function Movies(){
             <Row>
                 {films.map(el => {
                     return (
-                        <Col sm={2} onClick={() => history.push(MOVIE_ROUTE + '/' + el.id)} key={el.id} className="main-recomended-slider__item mb-3">
+                        <Col xl={2} sm={4} md={3} lg={3} xs={6} onClick={() => history.push(MOVIE_ROUTE + '/' + el.id)} key={el.id} className="main-recomended-slider__item mb-3">
                             <img src={process.env.REACT_APP_API_URL + "img/" + el.img} width="172px" height="264px"></img>
                             <p className="main-recomended-slider__item-name">{el.name}</p>
                             <p className="main-recomended-slider__item-access">Бесплатно</p>

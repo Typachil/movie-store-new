@@ -2,7 +2,7 @@
   "port": 5000,
   "DB_NAME" : "Voir",
   "DB_USER" : "postgres",
-  "DB_PASSWORD" : "WS2bg6earr",
+  "DB_PASSWORD" : "9WS?2bg6ea",
   "DB_HOST" : "localhost",
   "DB_PORT" : 5432,
   "jwtSecret": "moviestore",

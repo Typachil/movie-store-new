@@ -9,6 +9,7 @@ body{
 }
 
 .rating-area {
+	display: flex;
 	overflow: hidden;
 	margin: 0 auto;
 }
