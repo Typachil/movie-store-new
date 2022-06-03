@@ -61,6 +61,7 @@ header a {
     justify-content: space-between;
     align-items: center;
     padding: 15px 0 0 0;
+    margin-bottom: 0 !important;
 }
 
 header li {
@@ -73,23 +74,9 @@ header .user {
     cursor: pointer;
 }
 
-#menu {
-    z-index: 2;
-    display: none;
-}
-
 #menu-bar {
     width: 45px;
     cursor: pointer;
-}
-
-.bar {
-    height: 5px;
-    width: 100%;
-    background-color: #c8c0ed;
-    display: block;
-    border-radius: 5px;
-    transition: 0.3s ease;
 }
 
 #bar1 {
@@ -98,46 +85,6 @@ header .user {
 
 #bar3 {
     transform: translateY(4px);
-}
-
-.nav {
-    transition: 0.3s ease;
-    display: none;
-}
-
-.nav ul {
-    padding: 0 22px;
-}
-
-.nav li {
-    list-style: none;
-    padding: 12px 0;
-}
-
-.nav li a {
-    color: white;
-    font-size: 20px;
-    text-decoration: none;
-}
-
-.nav li a:hover {
-    font-weight: bold;
-}
-
-.menu-bg,
-#menu {
-    
-}
-
-.menu-bg {
-    z-index: 1;
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: 0;
-    background: radial-gradient(circle, #c8c0ed, #c8c0ed);
-    border-radius: 50%;
-    transition: 0.3s ease;
 }
 
 .change {
@@ -160,17 +107,11 @@ header .user {
     transform: translateY(-6px) rotateZ(45deg);
 }
 
-.change-bg {
-    width: 520px;
-    height: 460px;
-    transform: translate(-60%, -30%);
-}
-
 @media (max-width: 990px) {
     .header-genre {
         display: none;
     }
-    #menu{
+    #menu-bar{
         display: block;
     }
 }

@@ -5,6 +5,7 @@ import "../componentCss/header.css";
 import { CARTOON_ROUTE, COLLECTIONS_ROUTE, HOME_ROUTE, LOGIN_ROUTE, MOVIES_ROUTE, MOVIE_ROUTE, PROFILE_ROUTE, SERIES_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import { fetchFilms } from "../http/filmAPI";
+import { Dropdown } from "react-bootstrap";
 
 const Headers = observer(() => {
     const { user, film } = useContext(Context);
@@ -28,26 +29,31 @@ const Headers = observer(() => {
         setValueSearch(e.target.value);
     }
     return (
-        <header>
+        <header className="d-flex align-items-center">
             <div className="container d-flex justify-content-between">
                 <div className="divHeader">
                     <div className="header-logo"><Link to={HOME_ROUTE}><img src="/img/g1480.png" alt="фотография"></img></Link></div>
-                    <div id="menu">
                         <div id="menu-bar" className={changeBurger && "change"} onClick={() => setChangeBurger(!changeBurger)}>
                             <div id="bar1" className="bar"></div>
                             <div id="bar2" className="bar"></div>
                             <div id="bar3" className="bar"></div>
                         </div>
-                        <nav className={changeBurger ? "change nav" : "nav"} id="nav">
-                            <ul>
-                                <li><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
-                                <li><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
-                                <li><Link to={SERIES_ROUTE}>Сериалы</Link></li>
-                                <li><Link to={COLLECTIONS_ROUTE}>Подборки</Link></li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div className={changeBurger ? "menu-bg change-bg" : "menu-bg"} id="menu-bg"></div>
+                        <Dropdown>
+                            <Dropdown.Toggle id="dropdown-basic">
+                                <div id="menu-bar" className={changeBurger && "change"} onClick={() => setChangeBurger(!changeBurger)}>
+                                    <div id="bar1" className="bar"></div>
+                                    <div id="bar2" className="bar"></div>
+                                    <div id="bar3" className="bar"></div>
+                                </div>
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item href={MOVIES_ROUTE}>Фильмы</Dropdown.Item>
+                                <Dropdown.Item href={CARTOON_ROUTE}>Мультфильмы</Dropdown.Item>
+                                <Dropdown.Item href={SERIES_ROUTE}>Сериалы</Dropdown.Item>
+                                <Dropdown.Item href={COLLECTIONS_ROUTE}>Подборки</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
                     <ul className="divHeader">
                         <li className="header-genre"><Link to={MOVIES_ROUTE}>Фильмы</Link></li>
                         <li className="header-genre"><Link to={CARTOON_ROUTE}>Мультфильмы</Link></li>
