@@ -75,8 +75,19 @@ header .user {
 }
 
 #menu-bar {
+    z-index: 2;
+    display: none;
     width: 45px;
     cursor: pointer;
+}
+
+.bar {
+    height: 5px;
+    width: 100%;
+    background-color: #c8c0ed;
+    display: block;
+    border-radius: 5px;
+    transition: 0.3s ease;
 }
 
 #bar1 {
