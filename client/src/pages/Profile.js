@@ -50,7 +50,7 @@ const Profile = observer(() => {
                         {user.userHistory.map((item, key) => {
                             let { id, name, img, rating } = item.film;
                             return (
-                                <div onClick={() => history.push(MOVIE_ROUTE + '/' + id)} key={key} className="main-recomended-slider__item">
+                                <div onClick={() => history.push(MOVIE_ROUTE + '/' + id)} key={key} className="main-recomended-slider__item mr-3">
                                     {img ? <>
                                         <img src={process.env.REACT_APP_API_URL + "img/" + img} width="172px" height="264px"></img>
                                         <p className="main-recomended-slider__item-name">{name}</p>

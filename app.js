@@ -11,8 +11,9 @@ const errorHandler = require('./middleware/ErrorHandlingMiddleware');
 const app = express();
 app.use(cors())
 app.use(express.json({ extended: true }));
+//Определение пути к статическим файлам
 app.use(express.static(path.resolve(__dirname, 'static')));
-app.use(fileUpload({}))
+app.use(fileUpload({}));
 app.use('/api', router);
 
 //Обработка ошибок
