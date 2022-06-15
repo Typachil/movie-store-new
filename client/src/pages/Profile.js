@@ -63,7 +63,7 @@ const Profile = observer(() => {
                             )
                         })}
                     </div>
-                    <Arrow position={positionSlider} actions={nextPosition} direction={"right"} />
+                    {/* <Arrow position={positionSlider} actions={nextPosition} direction={"right"} /> */}
                 </div>
             }
         </div>
