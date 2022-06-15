@@ -11,12 +11,15 @@ import { ADMIN_ROUTE, CARTOON_ROUTE, COLLECTIONS_ROUTE, HOME_ROUTE, LOGIN_ROUTE,
 
 export const authRoutes = [
    {
-       path: ADMIN_ROUTE,
-       Component: Admin
-   },
-   {
         path: PROFILE_ROUTE,
         Component: Profile
+    }
+]
+
+export const adminRoutes = [
+    {
+        path: ADMIN_ROUTE,
+        Component: Admin
     }
 ]
 

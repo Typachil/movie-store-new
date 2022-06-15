@@ -18,7 +18,8 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
-    "serve": "^13.0.2"
+    "serve": "^13.0.2",
+    "voir": "file:.."
   },
   "scripts": {
     "dev": "react-scripts start",

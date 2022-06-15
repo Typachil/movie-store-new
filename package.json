@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "Online kinoteatr",
   "main": "app.js",
-  "engines": {
-    "node": "16.13.1",
-    "npm": "7.15.0"
-  },
   "scripts": {
     "start": "node app.js",
     "heroku-postbuild": "cd client && npm install && npm run build",

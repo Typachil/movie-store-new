@@ -9,7 +9,8 @@ import { observer } from "mobx-react-lite";
 const SliderMin = observer(({categoryId}) => {
     const history = useHistory();
     const slider = useRef(null);
-    const [displayButton, setDisplayButton] = useState(false)
+    const [displayButton, setDisplayButton] = useState(false);
+    const [widthSlider, setWidthSlider] = useState(0)
     const [arrayFilms, setArrayFilms] = useState([]);
 
     useEffect(() => {
@@ -17,20 +18,25 @@ const SliderMin = observer(({categoryId}) => {
             setArrayFilms(data); 
             setDisplayButton(data.length > 6);
         });
+        let items = slider.current.querySelectorAll('main-recomended-slider__item');
+        console.log(slider.current.children);
+        if(items.length){
+            setWidthSlider((slider.current.firstChild.offsetWidth + 33) * items.length);
+        }   
     }, []);
 
     let [positionSlider, setPositionSlider] = useState(0);
     let transformStyle = {transform : `translateX(${positionSlider}px)`}
-    const calculateWidthSlider = () => {
-        let items = slider.current.querySelectorAll('main-recomended-slider__item');
-        let widthAllItems = (items[0].offsetWidth + 33) * items.length;
-        return widthAllItems;
-    }
+    // const calculateWidthSlider = () => {
+    //     let items = slider.current.querySelectorAll('main-recomended-slider__item');
+    //     let widthAllItems = (items[0].offsetWidth + 33) * items.length;
+    //     return widthAllItems;
+    // }
     let nextPosition = (e) => {
-        setPositionSlider(positionSlider - calculateWidthSlider());
+        setPositionSlider(positionSlider - widthSlider());
     };
     let prevPosition = (e) => {
-        setPositionSlider(positionSlider + calculateWidthSlider());
+        setPositionSlider(positionSlider + widthSlider());
     };
 
     return (
