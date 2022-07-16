@@ -1,10 +1,8 @@
 import React from "react";
 import '../componentCss/sliderMin.css';
 
-export default function Arrow(props){
-    let {position,actions,direction} = props;
-    console.log(position)
-    let shutdownButton = direction === "left" ? position : -position !== 2460;
+export default function Arrow({position,actions,direction, offsetSlider}){
+    let shutdownButton = direction === "left" ? position : -position !== offsetSlider;
     return (
         shutdownButton ? <div className={`arrow-${direction}`} onClick={actions}>
                             <div className="arrow">

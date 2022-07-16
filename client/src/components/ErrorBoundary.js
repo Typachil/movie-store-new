@@ -1,30 +1,35 @@
 import React from 'react';
 
 export default class ErrorBoundary extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = { hasError: false };
-    }
-  
-    static getDerivedStateFromError(error) {
-      // Обновить состояние с тем, чтобы следующий рендер показал запасной UI.
-      return { hasError: true };
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Обновить состояние с тем, чтобы следующий рендер показал запасной UI.
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // Можно также сохранить информацию об ошибке в соответствующую службу журнала ошибок
+    console.log(error)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // Можно отрендерить запасной UI произвольного вида
+      return (
+        <div className='errorBoundary'>
+          <div>
+            <h1>Что то пошло не так...</h1>
+            <h2>Попробуйте перезагрузить страницу</h2>
+            <img src='img/error.png'></img>
+          </div>
+        </div>
+      )
     }
 
-    componentDidCatch(error, errorInfo) {
-      // Можно также сохранить информацию об ошибке в соответствующую службу журнала ошибок
-      console.log(error)
-    }
-  
-    render() {
-      if (this.state.hasError) {
-        // Можно отрендерить запасной UI произвольного вида
-        return (<div>
-                    <h1>Что-то пошло не так.</h1>
-                    <p>Неудачный рендеринг</p>
-                </div>)
-      }
-  
-      return this.props.children; 
-    }
+    return this.props.children;
   }
+}

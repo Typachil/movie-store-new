@@ -5,7 +5,6 @@ import "../componentCss/header.css";
 import { CARTOON_ROUTE, COLLECTIONS_ROUTE, HOME_ROUTE, LOGIN_ROUTE, MOVIES_ROUTE, MOVIE_ROUTE, PROFILE_ROUTE, SERIES_ROUTE } from "../utils/consts";
 import { observer } from "mobx-react-lite";
 import { fetchFilms } from "../http/filmAPI";
-import { Dropdown } from "react-bootstrap";
 
 const Headers = observer(() => {
     const { user, film } = useContext(Context);
@@ -68,7 +67,6 @@ const Headers = observer(() => {
                             })}
                         </div>
                     </div>
-                    {/* <li className="notifications"><img src="/img/bell.png" width="32px" height="32px" alt="фотография"></img></li> */}
                     <div className="user"><Link to={user._isAuth ? PROFILE_ROUTE : LOGIN_ROUTE}><img width="32px" height="32px" src="/img/user.png" alt="фотография"></img></Link></div>
                 </div>
             </div>

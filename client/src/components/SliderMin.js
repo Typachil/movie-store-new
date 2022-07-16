@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../componentCss/sliderMin.css';
 import Arrow from "./Arrow";
 import { useHistory } from "react-router-dom";
@@ -8,35 +8,31 @@ import { observer } from "mobx-react-lite";
 
 const SliderMin = observer(({categoryId}) => {
     const history = useHistory();
-    const slider = useRef(null);
-    const [displayButton, setDisplayButton] = useState(false)
+    const [displayButton, setDisplayButton] = useState(false);
     const [arrayFilms, setArrayFilms] = useState([]);
+    const [offsetSlider, setOffsetSlider] = useState(0);
+    const [positionSlider, setPositionSlider] = useState(0);
 
     useEffect(() => {
         fetchFilms(categoryId).then((data) => {
             setArrayFilms(data); 
             setDisplayButton(data.length > 6);
+            setOffsetSlider(188 * (data.length - 6)) 
         });
     }, []);
 
-    let [positionSlider, setPositionSlider] = useState(0);
     let transformStyle = {transform : `translateX(${positionSlider}px)`}
-    const calculateWidthSlider = () => {
-        let items = slider.current.querySelectorAll('main-recomended-slider__item');
-        let widthAllItems = (items[0].offsetWidth + 33) * items.length;
-        return widthAllItems;
-    }
     let nextPosition = (e) => {
-        setPositionSlider(positionSlider - calculateWidthSlider());
+        setPositionSlider(positionSlider - offsetSlider);
     };
     let prevPosition = (e) => {
-        setPositionSlider(positionSlider + calculateWidthSlider());
+        setPositionSlider(positionSlider + offsetSlider);
     };
 
     return (
         <div className="main-recomended-slider-wrapper">
-            {displayButton && <Arrow position={positionSlider} actions={prevPosition} direction={"left"} display={displayButton}/>}
-            <div ref={slider} className="main-recomended-slider" style={transformStyle}>
+            {displayButton && <Arrow position={positionSlider} actions={prevPosition} direction={"left"} display={displayButton} offsetSlider={offsetSlider}/>}
+            <div className="main-recomended-slider" style={transformStyle}>
                 {arrayFilms.map((item,key) => {
                     let {id,name,img,rating} = item;
                     return (
@@ -54,7 +50,7 @@ const SliderMin = observer(({categoryId}) => {
                     )
                 })}   
             </div>
-            {displayButton && <Arrow position={positionSlider} actions={nextPosition} direction={"right"}/>}
+            {displayButton && <Arrow position={positionSlider} actions={nextPosition} direction={"right"} offsetSlider={offsetSlider}/>}
         </div>
     )
 })
