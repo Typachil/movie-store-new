@@ -37,12 +37,12 @@ export const publicRoutes = [
         Component: MoviePage
     },
     {
-        path: HOME_ROUTE,
-        Component: Home
-    },
-    {
         path: CARTOON_ROUTE,
         Component: Cartoon
+    },
+    {
+        path: HOME_ROUTE,
+        Component: Home
     },
     {
         path: MOVIES_ROUTE,

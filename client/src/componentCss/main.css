@@ -53,3 +53,20 @@
     font-size: 18px;
     cursor: pointer;
 }
+
+.errorBoundary{
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.errorBoundary h1, .errorBoundary h2{
+    text-align: center;
+}
+
+@media (max-width: 540px) {
+    .errorBoundary img{
+        height: 70%;
+    }
+}

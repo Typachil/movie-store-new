@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext } from 'react';
+import React, { lazy, useContext } from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import { Context } from '../index';
 import { authRoutes, publicRoutes, adminRoutes } from '../routes';

@@ -53,13 +53,11 @@
     cursor: pointer;
     position: absolute;
     top:25%;
-    right:-10%;
+    right:-5%;
 }
 
 .arrow {
     cursor: pointer;
-    height: 120px;
-    width: 80px;
     position: relative;
     margin: 20px;
 }
