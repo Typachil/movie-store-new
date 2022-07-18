@@ -37,7 +37,17 @@ footer{
     width: 350px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
+
+.footer__copyright{
+    font-size: 1vmax;
+}
+
+.footer-media-icons p{
+    font-size: 1vmax;
+    margin: 0;
+ }
 
 .footer-media-icon{
     width: 30px;

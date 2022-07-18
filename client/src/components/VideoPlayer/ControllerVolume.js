@@ -23,7 +23,6 @@ export default function ControllerVolume(props){
             <div onClick={props.mutedVideo} className="player-control-button__muteSound">
                 <div className="player-control-button__muteSound-componentFirst"></div>
                 <div className="player-control-button__muteSound-componentSecond"></div>
-                <div className="player-control-button__muteSound-componentThird"></div>
             </div>
         </div> 
     )

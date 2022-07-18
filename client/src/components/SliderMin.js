@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import '../componentCss/sliderMin.css';
 import Arrow from "./Arrow";
 import { useHistory } from "react-router-dom";
@@ -8,16 +8,20 @@ import { observer } from "mobx-react-lite";
 
 const SliderMin = observer(({categoryId}) => {
     const history = useHistory();
+    const sliderItem = useRef(null);
     const [displayButton, setDisplayButton] = useState(false);
     const [arrayFilms, setArrayFilms] = useState([]);
     const [offsetSlider, setOffsetSlider] = useState(0);
     const [positionSlider, setPositionSlider] = useState(0);
 
     useEffect(() => {
-        fetchFilms(categoryId).then((data) => {
+        fetchFilms(categoryId).
+        then((data) => {
             setArrayFilms(data); 
-            setDisplayButton(data.length > 6);
-            setOffsetSlider(188 * (data.length - 6)) 
+            setDisplayButton(data.length > 6); 
+        }).then(() => {
+            let width = sliderItem.current.firstChild.offsetWidth;
+            setOffsetSlider((width + 16) * (arrayFilms.length - 6))
         });
     }, []);
 
@@ -32,7 +36,7 @@ const SliderMin = observer(({categoryId}) => {
     return (
         <div className="main-recomended-slider-wrapper">
             {displayButton && <Arrow position={positionSlider} actions={prevPosition} direction={"left"} display={displayButton} offsetSlider={offsetSlider}/>}
-            <div className="main-recomended-slider" style={transformStyle}>
+            <div ref={sliderItem} className="main-recomended-slider" style={transformStyle}>
                 {arrayFilms.map((item,key) => {
                     let {id,name,img,rating} = item;
                     return (

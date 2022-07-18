@@ -8,23 +8,44 @@ body{
     background-color:#141414 !important;
 }
 
+.pages-content img{
+	width: 15vmax;
+    height: 22vmax;
+    margin: 0 20px 20px auto;
+	float: left;
+}
+
+.pages-content__description h2{
+	font-size: 2.5vmax;
+}
+
+.pages-content__description p{
+	font-size: 1.3vmax;
+	margin-bottom: 5px;
+}
+
+.rating-film{
+	font-size: 1.3vmax;
+	font-weight: 700;
+}
+
 .rating-area {
 	display: flex;
 	flex-direction: row-reverse;
 	justify-content: flex-end;
 	align-items: center;
 	overflow: hidden;
-	margin: 0 auto;
+	width: 25vmax;
+	font-size: 1.2vmax;
 }
 .rating-area:not(:checked) input {
 	display: none;
 }
 .rating-area:not(:checked) > label {
 	float: right;
-	width: 30px;
 	padding: 0;
 	cursor: pointer;
-	font-size: 30px;
+	font-size: 2vmax;
 	line-height: 30px;
 	color: lightgrey;
 	text-shadow: 1px 1px #bbb;
