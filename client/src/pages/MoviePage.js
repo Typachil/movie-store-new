@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { fetchOneFilm, rateFilm, getRateFilm } from '../http/filmAPI';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../index';
+import '../componentCss/moviePage.css';
 
 const MoviePage = observer(() => {
     const { id } = useParams();
@@ -30,7 +31,7 @@ const MoviePage = observer(() => {
     }
 
     return (
-        <div className="pages-content container">
+        <div className="pages-content container page-movie">
             <div className='my-3'>
                 <div>
                     <img src={process.env.REACT_APP_API_URL + "img/" + filmOne.img}></img>

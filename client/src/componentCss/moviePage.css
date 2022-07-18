@@ -1,14 +1,4 @@
-body{
-    background-color:#141414 !important;
-}
-
-.pages-content{
-    min-height: 550px;
-    padding-top: 60px;
-    color: #ffffff;
-}
-
-.pages-content img{
+.page-movie img{
 	width: 15vmax;
     height: 22vmax;
     margin: 0 20px 20px auto;
