@@ -38,7 +38,7 @@ const MoviePage = observer(() => {
                 </div>
                 <div className='pages-content__description'>
                     <h2>{filmOne.name}</h2>
-                    <div>Рейтинг: {filmOne.rating}/10</div>
+                    <div className='rating-film'>Рейтинг: {filmOne.rating}/10</div>
                     {user.isAuth && <div className='rating-area'>
                         {getRatingBar()}
                         <span>Ваш рейтинг: </span>

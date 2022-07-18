@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 
-export default function ControllerVolume(props){
+export default function ControllerVolume({volumePlayer, round, changeVolumeVideo, mutedVideo}){
 
     const [defaultControllerVolumeHeight, setDefaultControllerVolumeHeight] = useState(0);
     const [controllerVolumeHeight, setControllerVolumeHeight] = useState(0);
@@ -8,11 +8,11 @@ export default function ControllerVolume(props){
 
     useEffect(() => {
         setDefaultControllerVolumeHeight(controllerVolume.current.getBoundingClientRect().height);
-        setControllerVolumeHeight(Math.round(defaultControllerVolumeHeight * props.volumePlayer))
-    },[props.volumePlayer]);
+        setControllerVolumeHeight(Math.round(defaultControllerVolumeHeight * volumePlayer))
+    },[volumePlayer]);
 
     function changeWidthController(e){
-        props.changeVolumeVideo(props.round(Math.round(controllerVolume.current.getBoundingClientRect().bottom - e.clientY) / 100 , 2));
+        changeVolumeVideo(round(Math.round(controllerVolume.current.getBoundingClientRect().bottom - e.clientY) / 100 , 2));
     }
 
     return (
@@ -20,7 +20,7 @@ export default function ControllerVolume(props){
             <div ref={controllerVolume} onClick={changeWidthController} className="player-control-button__popupControllerVolume" >
                 <div style={{height : controllerVolumeHeight + "px"}} className="player-control-button__popupControllerVolume__change"></div>
             </div>
-            <div onClick={props.mutedVideo} className="player-control-button__muteSound">
+            <div onClick={mutedVideo} className="player-control-button__muteSound">
                 <div className="player-control-button__muteSound-componentFirst"></div>
                 <div className="player-control-button__muteSound-componentSecond"></div>
             </div>
