@@ -13,6 +13,8 @@ export default function ControllerVolume(props){
 
     function changeWidthController(e){
         props.changeVolumeVideo(props.round(Math.round(controllerVolume.current.getBoundingClientRect().bottom - e.clientY) / 100 , 2));
+        console.log(props.round(Math.abs(controllerVolume.current.getBoundingClientRect().top - e.clientY) / 100, 2))
+        console.log(controllerVolume.current.getBoundingClientRect().height)
     }
 
     return (

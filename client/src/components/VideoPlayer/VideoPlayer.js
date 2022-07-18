@@ -56,6 +56,7 @@ export default function VideoPlayer({ videoSrc, userId, filmId }) {
     }
 
     function rewindVideo(time) {
+        
         videoPlayer.current.currentTime = time;
     }
 
@@ -93,14 +94,14 @@ export default function VideoPlayer({ videoSrc, userId, filmId }) {
         let hour = time < 3600 ? 0 : time % 3600;
         let minutes = time < 60 ? 0 : Math.floor(time / 60);
         let seconds = time < 60 ? time : time - (minutes * 60);
-        return `${hour}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`
+        return `${hour > 0 ? hour + ":" : ""}${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`
     }
 
     function realzieFullTime() {
-        let hour = Math.floor(videoDuration / 3600);
-        let minutes = Math.floor(videoDuration / 60);
+        let hour = Math.round(videoDuration / 3600);
+        let minutes = Math.round(videoDuration / 60);
         let seconds = videoDuration - (minutes * 60);
-        return `${hour}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`
+        return `${hour > 0 ? hour + ":" : ""}${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`
     }
 
     function changeFullScreen() {
@@ -180,7 +181,7 @@ export default function VideoPlayer({ videoSrc, userId, filmId }) {
                     {realizeTime(timeVideo)}
                 </div>
                 <VideoProgress rewindVideo={rewindVideo} timeVideo={timeVideo}
-                    videoDuration={videoDuration} realizeTime={realizeTime} />
+                    videoDuration={videoDuration} realizeTime={realizeTime}/>
                 <div className='player-control__time'>
                     {realzieFullTime()}
                 </div>
