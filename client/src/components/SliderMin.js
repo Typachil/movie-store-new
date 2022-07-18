@@ -15,20 +15,17 @@ const SliderMin = observer(({categoryId}) => {
     const [positionSlider, setPositionSlider] = useState(0);
 
     useEffect(() => {
-        fetchFilms(categoryId).then((data) => {
+        fetchFilms(categoryId).
+        then((data) => {
             setArrayFilms(data);
             setDisplayButton(data.length > 6);
-            setOffsetSlider(188 * (data.length - 6)) 
+        }).
+        then(() => {
+            let width = sliderItem.current.firstChild.offsetWidth;
+            setOffsetSlider((width + 16) * (arrayFilms.length - 6))
         });
     }, []);
-    console.log(offsetSlider);
-    console.log(positionSlider);  
     let transformStyle = {transform : `translateX(${positionSlider}px)`}
-    // const calculateWidthSlider = () => {
-    //     let items = slider.current.querySelectorAll('main-recomended-slider__item');
-    //     let widthAllItems = (items[0].offsetWidth + 33) * items.length;
-    //     return widthAllItems;
-    // }
     let nextPosition = (e) => {
         setPositionSlider(positionSlider - offsetSlider);
     };

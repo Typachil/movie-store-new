@@ -66,7 +66,7 @@ export default function Footer(){
                         <div className="footer-media-icon footer-media__gp"></div>
                         <div className="footer-media-icon footer-media__in"></div>
                     </div>
-                    <div>
+                    <div className='footer__copyright'>
                         © 2020 ООО «Voir.ру»
                     </div>
                 </div>
