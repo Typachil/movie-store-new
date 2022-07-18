@@ -165,7 +165,7 @@ export default function VideoPlayer({ videoSrc, userId, filmId }) {
                 <div onClick={pausedVideo} className="player-control__button">
                     <div className={`player-control-button__${pauseVideo ? 'play' : 'pause'}`}></div>
                 </div>
-                <div onClick={rewindPlayerLeft}
+                {/* <div onClick={rewindPlayerLeft}
                     className='player-control__button player-control-button__rewindLeft'>
                     <div></div>
                     <div></div>
@@ -174,7 +174,7 @@ export default function VideoPlayer({ videoSrc, userId, filmId }) {
                     className='player-control__button player-control-button__rewindRight'>
                     <div></div>
                     <div></div>
-                </div>
+                </div> */}
                 <div onClick={stopVideo}
                     className='player-control__button player-control-button__stop'>
                     <div></div>
