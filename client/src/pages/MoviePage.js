@@ -12,7 +12,7 @@ const MoviePage = observer(() => {
     const { user, film } = useContext(Context);
     useEffect(() => {
         fetchOneFilm(id).then(data => setFilmOne(data));
-        getRateFilm(Number(id), user.user.id).then(data => film.setRateUser(data.rate))
+        user.isAuth && getRateFilm(Number(id), user.user.id).then(data => film.setRateUser(data.rate))
     }, [film.rateUser]);
 
     function ratingFilm(rate) {

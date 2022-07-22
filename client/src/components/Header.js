@@ -17,7 +17,6 @@ const Headers = observer(() => {
     }, [])
 
     const filteredFilms = useMemo(() => {
-        console.log(changeBurger)
         if (valueSearch) {
             return film.films.filter(item => item.name.toLowerCase().includes(valueSearch.toLowerCase()));
         }
