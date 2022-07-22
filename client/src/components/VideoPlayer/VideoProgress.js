@@ -4,29 +4,41 @@ export default function VideoProgress({timeVideo, videoDuration, rewindVideo, re
     const [rewindVideoState, setRewindVideoState] = useState(0)
     const [secondOnPreview, setSecondOnPreview] = useState(0)
     const [onFocus,setOnFocus] = useState(false);
-    const [widthProgressBar, setWidthProgressBar] = useState(0)
+    const [widthProgressBar, setWidthProgressBar] = useState(0);
     const progressionBar = useRef(null);
 
+    function handleSubscribe(){
+        console.log(widthProgressBar)
+        const newWidth = progressionBar.current.getBoundingClientRect().width;
+        if(widthProgressBar !== newWidth){
+            setWidthProgressBar(newWidth)
+        }
+    }
+
     useEffect(() => {
-        setWidthProgressBar(progressionBar.current.getBoundingClientRect())
-    },[]);
+        setWidthProgressBar(progressionBar.current.getBoundingClientRect().width)
+        window.addEventListener('resize', handleSubscribe)
+        return () => {
+            window.removeEventListener('resize', handleSubscribe)
+        }
+    },[widthProgressBar]);
 
     function rewindPreview(e){
         let popupPreview = e.currentTarget.firstChild.getBoundingClientRect();
         let indentPreview = (e.clientX - e.currentTarget.getBoundingClientRect().left);
-        setSecondOnPreview(Math.round((indentPreview / widthProgressBar.width) * videoDuration))
+        setSecondOnPreview(Math.round((indentPreview / widthProgressBar) * videoDuration))
         setRewindVideoState(indentPreview - popupPreview.width / 2);
     }
 
 
     function progressionVideo(){
-        return Math.floor((timeVideo / videoDuration) * widthProgressBar.width);
+        return Math.floor((timeVideo / videoDuration) * widthProgressBar);
     };
 
     return (
         <div className='player-control-progress'
             ref={progressionBar}
-            onClick={rewindVideo.bind(null,secondOnPreview)}
+            onClick={() => rewindVideo(secondOnPreview)}
             onMouseMove={rewindPreview} 
             onMouseOver={() => setOnFocus(!onFocus)} 
             onMouseOut={() => setOnFocus(!onFocus)}>
